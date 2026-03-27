@@ -192,6 +192,7 @@
         #ember-canvas {
             position: absolute; inset: 0;
             width: 100%; height: 100%;
+            will-change: contents;
             pointer-events: none; z-index: 6;
         }
 
@@ -844,24 +845,32 @@
         });
     }, { threshold: 0.3 }).observe(explorerSection);
 
-    /* ── Scroll Progress Bar ── */
+    /* ── Scroll Progress Bar + Parallax ── */
     const progressBar = document.getElementById('scroll-progress');
     const backToTop = document.getElementById('back-to-top');
+    const heroImg = document.querySelector('.hero-parallax');
+    const docEl = document.documentElement;
+    let scrollRaf = null, lastScrollY = 0;
 
-    window.addEventListener('scroll', () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    function onScrollFrame() {
+        const scrollTop = lastScrollY;
+        const scrollHeight = docEl.scrollHeight - docEl.clientHeight;
+
         progressBar.style.width = (scrollTop / scrollHeight * 100) + '%';
 
-        // Back to top visibility
         if (scrollTop > 600) backToTop.classList.add('visible');
         else backToTop.classList.remove('visible');
 
-        // Parallax hero
-        const heroImg = document.querySelector('.hero-parallax');
         if (heroImg && scrollTop < window.innerHeight) {
-            heroImg.style.transform = `translateY(${scrollTop * 0.35}px)`;
+            heroImg.style.transform = `translate3d(0,${-scrollTop * 0.18}px,0)`;
         }
+
+        scrollRaf = null;
+    }
+
+    window.addEventListener('scroll', () => {
+        lastScrollY = docEl.scrollTop;
+        if (!scrollRaf) scrollRaf = requestAnimationFrame(onScrollFrame);
     }, { passive: true });
 
     /* ── Scroll-triggered Reveals ── */
@@ -912,7 +921,7 @@
         const canvas = document.getElementById('ember-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let W, H, particles = [];
+        let W, H, particles = [], rafId = null, running = false;
 
         function resize() {
             W = canvas.width = canvas.offsetWidth;
@@ -921,60 +930,77 @@
         resize();
         window.addEventListener('resize', resize);
 
-        function rand(min, max) { return Math.random() * (max - min) + min; }
+        function rand(a, b) { return Math.random() * (b - a) + a; }
 
-        function createParticle() {
-            const big = Math.random() < 0.2;
+        function spawn(randomY) {
+            const big = Math.random() < 0.18;
             return {
                 x: rand(0, W),
-                y: H + rand(0, 30),
-                vx: rand(-0.2, 0.2),
-                vy: rand(-0.3, -0.8),
-                size: big ? rand(3, 5.5) : rand(1.2, 3),
-                alpha: rand(0.65, 1.0),
-                decay: rand(0.0015, 0.005),
-                color: (['#FFB692','#E9C349','#FF7722','#FFCC88'])[Math.floor(Math.random()*4)],
+                y: randomY ? rand(0, H) : H + rand(0, 20),
+                vx: rand(-0.15, 0.15),
+                vy: rand(-0.3, -0.7),
+                size: big ? rand(2.8, 5) : rand(1, 2.8),
+                alpha: rand(0.6, 1.0),
+                decay: rand(0.001, 0.004),
+                color: ['#FFB692','#E9C349','#FF7722','#FFCC88'][Math.floor(Math.random() * 4)],
+                drift: rand(0, Math.PI * 2),
             };
         }
 
-        for (let i = 0; i < 180; i++) {
-            const p = createParticle();
-            p.y = rand(0, H);
-            particles.push(p);
-        }
+        for (let i = 0; i < 160; i++) particles.push(spawn(true));
 
-        function animate() {
+        function loop() {
+            if (!running) return;
             ctx.clearRect(0, 0, W, H);
-            particles.forEach((p, i) => {
-                p.x += p.vx + Math.sin(p.y * 0.02) * 0.3; // slight horizontal drift
+            const t = performance.now() * 0.001;
+
+            ctx.globalCompositeOperation = 'lighter';
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.vx + Math.sin(t * 0.55 + p.drift) * 0.14;
                 p.y += p.vy;
                 p.alpha -= p.decay;
-                if (p.alpha <= 0 || p.y < -10) {
-                    particles[i] = createParticle();
-                    return;
-                }
-                ctx.save();
-                ctx.globalAlpha = p.alpha;
+                if (p.alpha <= 0 || p.y < -10) { particles[i] = spawn(false); continue; }
+
+                // Soft outer halo (cheap glow — no shadowBlur)
+                ctx.globalAlpha = p.alpha * 0.18;
                 ctx.fillStyle = p.color;
-                ctx.shadowBlur = 12;
-                ctx.shadowColor = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Bright core
+                ctx.globalAlpha = p.alpha * 0.85;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.restore();
-            });
-            // Continuous burst of new sparks
-            if (particles.length < 200) particles.push(createParticle());
-            requestAnimationFrame(animate);
-        }
-        animate();
+            }
 
-        // Pause when hero scrolls out of view
-        let running = true;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.globalAlpha = 1;
+
+            if (particles.length < 180) particles.push(spawn(false));
+            rafId = requestAnimationFrame(loop);
+        }
+
+        function start() {
+            if (running) return;
+            running = true;
+            rafId = requestAnimationFrame(loop);
+        }
+        function stop() {
+            running = false;
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+
+        const hero = document.getElementById('hero');
         new IntersectionObserver(([e]) => {
-            running = e.isIntersecting;
-            if (running) animate();
-        }).observe(canvas);
+            e.isIntersecting ? start() : stop();
+        }, { threshold: 0 }).observe(hero || canvas);
+
+        start();
     })();
 
     // Scroll-driven Day → Night cinematic transition for "Crossing the Night"
@@ -984,14 +1010,14 @@
         if (!nc || !section) return;
         const ctx = nc.getContext('2d');
         let W = 0, H = 0, stars = [], fireflies = [], shootingStars = [];
-        let progress = 0, targetProgress = 0, nRaf = null, shootTimer = 0;
+        let progress = 0, targetProgress = 0, nRaf = null, nRunning = false, shootTimer = 0;
 
-        // Colour stages: [skyTop, skyMid, horizonBand, base]
+        // Colour stages compressed so full day→night plays while section is in viewport
         const STAGES = [
             { p: 0.00, sky: ['#1A4A8A','#3E8EC4','#FFD190','#F4875A'] }, // noon
-            { p: 0.30, sky: ['#0D2A5C','#B05820','#FF6B1A','#C43808'] }, // golden hour
-            { p: 0.52, sky: ['#080820','#4A1060','#C42800','#7A0C00'] }, // sunset
-            { p: 0.68, sky: ['#030812','#130828','#1A0618','#0C0018'] }, // dusk
+            { p: 0.18, sky: ['#0D2A5C','#B05820','#FF6B1A','#C43808'] }, // golden hour
+            { p: 0.34, sky: ['#080820','#4A1060','#C42800','#7A0C00'] }, // sunset
+            { p: 0.50, sky: ['#030812','#130828','#1A0618','#0C0018'] }, // dusk
             { p: 1.00, sky: ['#01040E','#050C1C','#060E1A','#08121F'] }, // deep night
         ];
 
@@ -1055,18 +1081,21 @@
         window.addEventListener('resize', init);
         requestAnimationFrame(() => requestAnimationFrame(init));
 
+        let progressRaf = null;
         function updateProgress() {
             if (!H) return;
             const rect = section.getBoundingClientRect();
             const vh = window.innerHeight;
-            targetProgress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+            targetProgress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height) * 2.2));
+            progressRaf = null;
         }
-        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('scroll', () => {
+            if (!progressRaf) progressRaf = requestAnimationFrame(updateProgress);
+        }, { passive: true });
 
         function draw() {
             if (!W || !H) return;
-            // Very slow lerp so the sky shift is gradual and cinematic
-            progress += (targetProgress - progress) * 0.035;
+            progress += (targetProgress - progress) * 0.05;
             const t = performance.now() / 1000;
 
             // ── Sky gradient ──────────────────────────────────────
@@ -1079,8 +1108,8 @@
             ctx.fillStyle = sky;
             ctx.fillRect(0, 0, W, H);
 
-            // ── Sun: descends and dims as progress → 0.6 ─────────
-            const sunVis = Math.max(0, 1 - progress / 0.62);
+            // ── Sun: descends and dims as progress → 0.38 ────────
+            const sunVis = Math.max(0, 1 - progress / 0.38);
             if (sunVis > 0.01) {
                 const sunX = W * 0.64;
                 const sunY = H * 0.05 + progress * H * 0.68; // moves downward
@@ -1095,8 +1124,8 @@
                 ctx.fillRect(0, 0, W, H);
             }
 
-            // ── Horizon glow (sunset band) peaks around p=0.45 ───
-            const hglo = Math.max(0, 1 - Math.abs(progress - 0.44) / 0.22);
+            // ── Horizon glow (sunset band) peaks around p=0.28 ───
+            const hglo = Math.max(0, 1 - Math.abs(progress - 0.28) / 0.16);
             if (hglo > 0.01) {
                 const hy = H * (0.62 + progress * 0.12);
                 const hg = ctx.createLinearGradient(0, hy - 80, 0, hy + 50);
@@ -1108,12 +1137,11 @@
                 ctx.fillRect(0, 0, W, H);
             }
 
-            // ── Moon: rises from bottom-right as progress > 0.42 ─
-            const moonVis = Math.max(0, Math.min(1, (progress - 0.42) / 0.35));
+            // ── Moon: rises from bottom-right as progress > 0.26 ─
+            const moonVis = Math.max(0, Math.min(1, (progress - 0.26) / 0.28));
             if (moonVis > 0.01) {
                 const moonX = W * 0.80;
-                // rises upward: starts at bottom, reaches H*0.12 at full night
-                const moonY = H * (0.95 - (progress - 0.42) * 1.35);
+                const moonY = H * (0.95 - (progress - 0.26) * 1.6);
                 const mg = ctx.createRadialGradient(moonX, moonY, 0, moonX, moonY, 130);
                 mg.addColorStop(0,   `rgba(245,252,215,${moonVis * 0.30})`);
                 mg.addColorStop(0.28,`rgba(210,225,255,${moonVis * 0.11})`);
@@ -1123,7 +1151,7 @@
             }
 
             // ── Nebula bloom (night only) ─────────────────────────
-            const nebVis = Math.max(0, (progress - 0.62) / 0.3);
+            const nebVis = Math.max(0, (progress - 0.42) / 0.22);
             if (nebVis > 0.01) {
                 const nb = ctx.createRadialGradient(W*0.28, H*0.22, 0, W*0.28, H*0.22, W*0.42);
                 nb.addColorStop(0,   `rgba(65,22,125,${nebVis * 0.18})`);
@@ -1133,8 +1161,8 @@
                 ctx.fillRect(0, 0, W, H);
             }
 
-            // ── Stars fade in after p=0.44 ────────────────────────
-            const starVis = Math.max(0, Math.min(1, (progress - 0.44) / 0.38));
+            // ── Stars fade in after p=0.28 ────────────────────────
+            const starVis = Math.max(0, Math.min(1, (progress - 0.28) / 0.25));
             if (starVis > 0.01) {
                 for (const s of stars) {
                     const tw = 0.5 + 0.5 * Math.sin(t * s.twinkleSpeed + s.twinkleOffset);
@@ -1150,9 +1178,9 @@
                 ctx.shadowBlur = 0;
             }
 
-            // ── Fireflies at dusk: p 0.48..0.80 ──────────────────
-            const ffVis = Math.max(0, Math.min(1, (progress - 0.48) / 0.20))
-                        * Math.max(0, Math.min(1, (0.82 - progress) / 0.14));
+            // ── Fireflies at dusk: p 0.30..0.62 ──────────────────
+            const ffVis = Math.max(0, Math.min(1, (progress - 0.30) / 0.14))
+                        * Math.max(0, Math.min(1, (0.64 - progress) / 0.12));
             if (ffVis > 0.01) {
                 for (const f of fireflies) {
                     f.phase += f.speed;
@@ -1174,7 +1202,7 @@
             }
 
             // ── Shooting stars (deep night only) ─────────────────
-            if (progress > 0.72) {
+            if (progress > 0.52) {
                 shootTimer++;
                 if (shootTimer > 140 && Math.random() < 0.03) {
                     shootingStars.push(makeShootingStar());
@@ -1201,6 +1229,7 @@
         }
 
         function loop() {
+            if (!nRunning) return;
             draw();
             nRaf = requestAnimationFrame(loop);
         }
@@ -1208,8 +1237,12 @@
         new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
                 updateProgress();
-                if (!nRaf) loop();
+                if (!nRunning) {
+                    nRunning = true;
+                    nRaf = requestAnimationFrame(loop);
+                }
             } else {
+                nRunning = false;
                 cancelAnimationFrame(nRaf);
                 nRaf = null;
             }
