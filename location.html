@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Location | Athirathram 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#793100",
+            "surface-dim": "#131313",
+            "tertiary": "#c9c6c0",
+            "surface-container-low": "#1c1b1b",
+            "outline": "#a78b7e",
+            "on-secondary": "#3c2f00",
+            "error": "#ffb4ab",
+            "on-primary": "#552000",
+            "primary": "#ffb692",
+            "tertiary-fixed": "#e5e2db",
+            "surface-bright": "#393939",
+            "secondary-fixed": "#ffe088",
+            "primary-container": "#ff7722",
+            "inverse-primary": "#9f4200",
+            "outline-variant": "#584237",
+            "on-background": "#e5e2e1",
+            "on-error": "#690005",
+            "primary-fixed": "#ffdbcb",
+            "inverse-on-surface": "#313030",
+            "surface-tint": "#ffb692",
+            "surface-variant": "#353535",
+            "on-surface-variant": "#e0c0b1",
+            "tertiary-container": "#a19f99",
+            "on-secondary-fixed-variant": "#574500",
+            "error-container": "#93000a",
+            "surface-container": "#20201f",
+            "surface": "#131313",
+            "on-error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#c9c6c0",
+            "on-secondary-fixed": "#241a00",
+            "on-tertiary-fixed": "#1c1c18",
+            "on-secondary-container": "#342800",
+            "secondary-container": "#af8d11",
+            "surface-container-lowest": "#0e0e0e",
+            "secondary-fixed-dim": "#e9c349",
+            "on-primary-container": "#5e2400",
+            "surface-container-high": "#2a2a2a",
+            "on-tertiary-container": "#373632",
+            "on-primary-fixed": "#341100",
+            "inverse-surface": "#e5e2e1",
+            "surface-container-highest": "#353535",
+            "secondary": "#e9c349",
+            "on-tertiary": "#31312c",
+            "on-surface": "#e5e2e1",
+            "primary-fixed-dim": "#ffb692",
+            "background": "#131313",
+            "on-tertiary-fixed-variant": "#474742"
+          },
+          fontFamily: {
+            "headline": ["Noto Serif"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+</script>
+<style>
+    body { font-family: 'Manrope', sans-serif; background-color: #131313; color: #E5E2E1; }
+    .font-serif { font-family: 'Noto Serif', serif; }
+    .map-container iframe { width: 100%; height: 100%; border: 0; display: block; }
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.8s ease-out forwards; }
+    .gallery-item { transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+    .gallery-item:hover { transform: scale(1.03); }
+</style>
+</head>
+<body class="bg-surface text-on-surface">
+
+<!-- Nav -->
+<header class="sticky top-0 w-full z-50 bg-[#131313]/90 backdrop-blur-lg bg-gradient-to-b from-[#1C1B1B] to-transparent shadow-[0_4px_30px_rgba(255,119,34,0.05)] transition-all duration-500 ease-in-out">
+<nav class="flex justify-between items-center px-10 py-6 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif font-bold text-[#E9C349] tracking-widest">Athirathram 2026</div>
+<div class="hidden md:flex items-center space-x-10 font-serif text-lg tracking-tight">
+<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="index.html">The Yajna</a>
+<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="master.html">The Master</a>
+<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="schedule.html">Schedule</a>
+<a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1" href="location.html">Location</a>
+<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="support.html">Support</a>
+</div>
+<a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-8 py-3 rounded-DEFAULT font-bold text-sm tracking-widest uppercase hover:scale-105 transition-transform">
+    Register/Donate
+</a>
+</nav>
+</header>
+
+<!-- Hero -->
+<section class="relative h-[70vh] min-h-[500px] flex items-end overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover" src="images/venue-aerial.jpg" alt="Veda Mahamandiram aerial view"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-10 pb-16 w-full fade-up">
+    <span class="inline-block py-1 px-4 border border-secondary/30 bg-secondary/10 text-secondary text-sm font-label tracking-[0.2em] uppercase mb-4">Sacred Grounds</span>
+    <h1 class="font-serif text-5xl md:text-7xl font-bold text-on-surface mb-4">The <span class="text-primary">Venue</span></h1>
+    <p class="text-on-surface-variant text-xl max-w-2xl">Veda Mahamandiram, nestled beside tranquil backwaters amid Kerala's coconut groves — Kozhikode, Kerala.</p>
+</div>
+</section>
+
+<!-- Map + Info -->
+<section class="py-20 px-6 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch">
+
+    <!-- Map -->
+    <div class="lg:col-span-3 rounded-xl overflow-hidden relative" style="min-height: 520px;">
+        <div class="map-container w-full h-full absolute inset-0">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.153953817715!2d75.77773287622442!3d11.323455688860538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65e44d2ad8e3d%3A0x92b000b28175919d!2sMahashay%20Dharampal%20MDH%20Veda%20Research%20Foundation%20(Veda%20Mahamandiram)!5e0!3m2!1sen!2sin!4v1774602669417!5m2!1sen!2sin"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Veda Mahamandiram Location">
+            </iframe>
+        </div>
+        <!-- Map overlay branding strip -->
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-surface/80 to-transparent p-4 pointer-events-none z-10">
+            <a href="https://maps.app.goo.gl/YgZnhYAGpf3f6rPD8" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 bg-surface-container/90 backdrop-blur-sm text-primary text-sm font-semibold px-4 py-2 rounded-xl border border-outline-variant/30 pointer-events-auto hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-base">open_in_new</span>
+                Open in Google Maps
+            </a>
+        </div>
+    </div>
+
+    <!-- Info Card -->
+    <div class="lg:col-span-2 flex flex-col gap-4">
+        <!-- Venue name -->
+        <div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 flex-1">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-primary text-2xl">temple_hindu</span>
+                </div>
+                <div>
+                    <h2 class="font-serif text-xl text-on-surface font-bold leading-snug">Veda Mahamandiram</h2>
+                    <p class="text-on-surface-variant text-sm mt-1">Mahashay Dharampal MDH Veda Research Foundation</p>
+                </div>
+            </div>
+            <div class="space-y-4 text-sm text-on-surface-variant">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-secondary text-lg mt-0.5">location_on</span>
+                    <span>Kozhikode (Calicut), Kerala, India<br/>11.3234° N, 75.7803° E</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-secondary text-lg mt-0.5">calendar_month</span>
+                    <span>April – May 2026<br/>10 Days & Nights</span>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-secondary text-lg mt-0.5">water</span>
+                    <span>Set amidst Kerala backwaters, surrounded by coconut groves in a serene natural setting</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to reach -->
+        <div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20">
+            <h3 class="font-serif text-lg text-on-surface font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">directions</span>
+                How to Reach
+            </h3>
+            <div class="space-y-3 text-sm text-on-surface-variant">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#E9C349] text-base">flight</span>
+                    <span><strong class="text-on-surface">Calicut International Airport</strong> — 28 km</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#E9C349] text-base">train</span>
+                    <span><strong class="text-on-surface">Kozhikode Railway Station</strong> — 12 km</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#E9C349] text-base">directions_bus</span>
+                    <span><strong class="text-on-surface">KSRTC Bus Stand</strong> — 10 km</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Gallery -->
+<section class="py-20 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+        <span class="inline-block py-1 px-4 border border-secondary/30 bg-secondary/10 text-secondary text-sm font-label tracking-[0.2em] uppercase mb-4">The Sacred Space</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-on-surface">Gallery</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Large -->
+        <div class="col-span-2 row-span-2 rounded-xl overflow-hidden relative gallery-item" style="min-height:400px;">
+            <img class="w-full h-full object-cover absolute inset-0" src="images/venue-aerial.jpg" alt="Veda Mahamandiram aerial view"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-6">
+                <p class="font-serif text-lg text-on-surface font-bold">Veda Mahamandiram</p>
+                <p class="text-on-surface-variant text-sm">Aerial view — Kozhikode, Kerala</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl overflow-hidden relative gallery-item" style="min-height:190px;">
+            <img class="w-full h-full object-cover absolute inset-0" src="images/venue-entrance.jpg" alt="Temple entrance"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+                <p class="text-sm font-semibold text-on-surface">Main Entrance</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl overflow-hidden relative gallery-item" style="min-height:190px;">
+            <img class="w-full h-full object-cover absolute inset-0" src="images/crossing-the-night.png" alt="Sacred fire ritual"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+                <p class="text-sm font-semibold text-on-surface">The Sacred Yajna</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl overflow-hidden relative gallery-item" style="min-height:220px;">
+            <img class="w-full h-full object-cover absolute inset-0" src="images/mass-gathering.png" alt="Mass gathering"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+                <p class="text-sm font-semibold text-on-surface">Community Gathering</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl overflow-hidden relative gallery-item" style="min-height:220px;">
+            <img class="w-full h-full object-cover absolute inset-0" src="images/chaturveda-pratishtha.png" alt="Chaturveda Pratishtha"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+                <p class="text-sm font-semibold text-on-surface">Chaturveda Pratishtha</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl overflow-hidden relative gallery-item" style="min-height:220px;">
+            <img class="w-full h-full object-cover absolute inset-0" src="images/hero.jpg" alt="Ritual fire"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-4">
+                <p class="text-sm font-semibold text-on-surface">The Sacred Fire</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Footer CTA -->
+<section class="py-24 px-6 text-center bg-surface">
+<div class="max-w-3xl mx-auto">
+    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">Be Present at the <span class="text-primary">Sacred Grounds</span></h2>
+    <p class="text-on-surface-variant text-lg mb-10">Join thousands of seekers at Veda Mahamandiram for this once-in-a-generation Vedic event.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-10 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(255,119,34,0.3)] transition-all">
+            Register Now
+        </a>
+        <a href="schedule.html" class="bg-surface-container border border-outline-variant/30 text-secondary px-10 py-4 rounded-lg font-bold text-lg hover:bg-surface-container-high transition-all">
+            View Schedule
+        </a>
+    </div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="py-10 px-10 bg-surface-container-lowest border-t border-outline-variant/10 text-center text-on-surface-variant/50 text-sm font-label">
+    © 2026 Athirathram. Kozhikode, Kerala, India. All rights reserved.
+</footer>
+
+</body>
+</html>

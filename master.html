@@ -96,7 +96,7 @@
 <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="index.html">The Yajna</a>
 <a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1 hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="master.html">The Master</a>
 <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="schedule.html">Schedule</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="#">Location</a>
+<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="index.html#location">Location</a>
 <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="support.html">Support</a>
 </div>
 <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-medium tracking-wide hover:brightness-110 transition-all">
@@ -127,7 +127,7 @@
 </div>
 </div>
 <div class="flex justify-center lg:justify-end items-end">
-<img src="images/acharya-Photoroom.png" alt="Acharyasri Rajesh" class="max-h-[860px] w-auto object-contain drop-shadow-[0_0_60px_rgba(255,182,146,0.15)]"/>
+<img src="images/acharya-Photoroom.png" alt="Acharyasri Rajesh" class="max-h-[860px] w-auto object-contain drop-shadow-[0_0_60px_rgba(255,182,146,0.15)] cursor-zoom-in" data-lightbox/>
 </div>
 </div>
 </section>
@@ -137,7 +137,7 @@
 <div class="order-2 md:order-1">
 <div class="relative">
 <div class="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-primary/20"></div>
-<img class="rounded-lg shadow-2xl relative z-10" data-alt="a large gathering of people listening intently in a modern hall with warm ambient lighting and spiritual symbols" src="images/master_2.jpg"/>
+<img class="rounded-lg shadow-2xl relative z-10 cursor-zoom-in" data-alt="a large gathering of people listening intently in a modern hall with warm ambient lighting and spiritual symbols" src="images/master_2_new.png" data-lightbox/>
 <div class="absolute -bottom-6 -right-6 glass-card p-6 rounded-lg z-20">
 <div class="text-secondary font-headline text-4xl font-bold">Lakhs</div>
 <div class="text-on-surface-variant font-label text-sm tracking-widest uppercase">Guided Worldwide</div>
@@ -173,7 +173,7 @@
 <!-- Highlighted Book -->
 <div class="md:col-span-2 md:row-span-2 bg-surface-container relative group overflow-hidden rounded-xl border border-outline-variant/10">
 <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-80"></div>
-<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="ornate ancient book with gold leaf patterns on its leather cover resting on dark wooden table" src="images/master_3.jpg"/>
+<img class="absolute inset-0 w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 cursor-zoom-in" data-alt="ornate ancient book with gold leaf patterns on its leather cover resting on dark wooden table" src="images/master_3_new.png" data-lightbox/>
 <div class="absolute bottom-0 left-0 p-10 z-20">
 <span class="text-secondary font-label text-xs tracking-widest uppercase mb-2 block">Best Seller</span>
 <h3 class="font-headline text-3xl font-bold text-white mb-4">Hindu Dharma Rahasyam</h3>
@@ -239,8 +239,8 @@
 </ul>
 </div>
 <div class="md:w-1/2 grid grid-cols-2 gap-4">
-<img class="rounded-lg h-64 w-full object-cover" data-alt="group of diverse individuals in traditional dress participating in a collective ritual under golden light" src="images/master_4.jpg"/>
-<img class="rounded-lg h-64 w-full object-cover mt-12" data-alt="close up of hands receiving a sacred object in a gesture of empowerment and inclusivity" src="images/master_5.jpg"/>
+<img class="rounded-lg h-64 w-full object-cover cursor-zoom-in" data-alt="group of diverse individuals in traditional dress participating in a collective ritual under golden light" src="images/venue-entrance.jpg" data-lightbox/>
+<img class="rounded-lg h-64 w-full object-cover mt-12 cursor-zoom-in" data-alt="close up of hands receiving a sacred object in a gesture of empowerment and inclusivity" src="images/master_5_new.png" data-lightbox/>
 </div>
 </div>
 </div>
@@ -320,4 +320,48 @@
             © 2026 Kasyapa Veda Research Foundation. All Rights Sacred.
         </div>
 </footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-[9999] flex items-center justify-center hidden" role="dialog" aria-modal="true">
+  <div id="lightbox-backdrop" class="absolute inset-0 bg-black/90 backdrop-blur-sm"></div>
+  <button id="lightbox-close" aria-label="Close" class="absolute top-5 right-5 z-10 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full w-11 h-11 flex items-center justify-center transition-all">
+    <span class="material-symbols-outlined text-2xl">close</span>
+  </button>
+  <img id="lightbox-img" src="" alt="" class="relative z-10 max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl select-none"/>
+</div>
+
+<script>
+(function () {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('lightbox-close');
+  const backdrop = document.getElementById('lightbox-backdrop');
+
+  function open(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    lightbox.focus();
+  }
+
+  function close() {
+    lightbox.classList.add('hidden');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('img[data-lightbox]').forEach(function (img) {
+    img.addEventListener('click', function () {
+      open(img.src, img.alt || img.getAttribute('data-alt') || '');
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
 </body></html>
