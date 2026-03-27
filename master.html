@@ -85,58 +85,67 @@
       }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 overflow-x-hidden">
 <!-- TopNavBar -->
-<nav class="sticky top-0 w-full z-50 bg-[#131313]/90 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)] bg-gradient-to-b from-[#1C1B1B] to-transparent transition-all duration-500 ease-in-out">
-<div class="flex justify-between items-center px-10 py-6 max-w-screen-2xl mx-auto">
-<div class="text-2xl font-headline font-bold text-[#E9C349] tracking-widest">
-                Athirathram 2026
-            </div>
-<div class="hidden md:flex items-center space-x-10 font-headline text-lg tracking-tight">
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="index.html">The Yajna</a>
-<a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1 hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="master.html">The Master</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="schedule.html">Schedule</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="index.html#location">Location</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)]" href="support.html">Support</a>
-</div>
-<a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-medium tracking-wide hover:brightness-110 transition-all">
-                Register/Donate
-            </a>
-</div>
+<header class="sticky top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)]">
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 md:py-6 max-w-screen-2xl mx-auto">
+  <div class="text-lg md:text-2xl font-serif font-bold text-[#E9C349] tracking-widest">Athirathram 2026</div>
+  <div class="hidden md:flex items-center space-x-10 font-serif text-lg tracking-tight">
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html">The Yajna</a>
+    <a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1" href="master.html">The Master</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="schedule.html">Schedule</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#location">Location</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="support.html">Support</a>
+  </div>
+  <a href="support.html" class="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-bold text-sm tracking-widest uppercase hover:brightness-110 transition-all">Register/Donate</a>
+  <button id="menu-toggle" onclick="var m=document.getElementById('mobile-menu');m.classList.toggle('hidden');this.querySelector('.bar1').classList.toggle('rotate-45');this.querySelector('.bar1').classList.toggle('translate-y-2');this.querySelector('.bar2').classList.toggle('opacity-0');this.querySelector('.bar3').classList.toggle('-rotate-45');this.querySelector('.bar3').classList.toggle('-translate-y-2');" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+    <span class="bar1 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar2 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar3 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+  </button>
 </nav>
+<div id="mobile-menu" class="hidden md:hidden bg-[#1C1B1B] border-t border-[#E9C349]/10 px-6 py-6 flex flex-col gap-5 font-serif text-lg">
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html">The Yajna</a>
+  <a class="text-[#FFB692] border-b border-[#E9C349]/30 pb-3" href="master.html">The Master</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="schedule.html">Schedule</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#location">Location</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="support.html">Support</a>
+  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center mt-2">Register/Donate</a>
+</div>
+</header>
 <main class="min-h-screen overflow-x-hidden">
 <!-- Hero Section: The Master -->
-<section class="relative min-h-[921px] flex items-center overflow-hidden bg-surface">
+<section class="relative min-h-[600px] md:min-h-[921px] flex items-center overflow-hidden bg-surface">
 <div class="absolute inset-0 z-0 bg-gradient-to-r from-surface via-surface/95 to-surface/40"></div>
-<div class="relative z-10 w-full max-w-7xl mx-auto px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
-<div class="space-y-8 py-24">
+<div class="relative z-10 w-full max-w-7xl mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-end">
+<div class="space-y-5 md:space-y-8 py-12 md:py-24">
 <span class="inline-block py-1 px-4 border border-secondary/20 bg-secondary/10 text-secondary text-sm font-label tracking-[0.2em] uppercase">The Modern Rishi</span>
-<h1 class="font-headline text-5xl md:text-7xl font-bold leading-tight -tracking-tight text-on-surface">
+<h1 class="font-headline text-3xl sm:text-4xl md:text-7xl font-bold leading-tight -tracking-tight text-on-surface">
                         Acharyasri Rajesh: <span class="text-primary italic">Prolific Scholar,</span> Modern Rishi, <span class="text-secondary">Social Reformer.</span>
 </h1>
-<p class="font-body text-xl text-on-surface-variant max-w-xl leading-relaxed">
+<p class="font-body text-base md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
                         A beacon of Vedic wisdom in the 21st century, bridge-builder between ancient tradition and modern scientific inquiry.
                     </p>
-<div class="flex space-x-6">
-<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-8 py-4 rounded-lg font-bold tracking-wide hover:shadow-[0_0_30px_rgba(255,182,146,0.2)] transition-all">
+<div class="flex space-x-3 md:space-x-6">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-5 py-3 md:px-8 md:py-4 rounded-lg font-bold tracking-wide hover:shadow-[0_0_30px_rgba(255,182,146,0.2)] transition-all text-sm md:text-base">
                             Explore Books
                         </button>
-<button class="border border-outline-variant/30 text-secondary px-8 py-4 rounded-lg font-bold tracking-wide hover:bg-secondary/10 transition-all">
+<button class="border border-outline-variant/30 text-secondary px-5 py-3 md:px-8 md:py-4 rounded-lg font-bold tracking-wide hover:bg-secondary/10 transition-all text-sm md:text-base">
                             Join Courses
                         </button>
 </div>
 </div>
 <div class="flex justify-center lg:justify-end items-end">
-<img src="images/acharya-Photoroom.png" alt="Acharyasri Rajesh" class="max-h-[860px] w-auto object-contain drop-shadow-[0_0_60px_rgba(255,182,146,0.15)] cursor-zoom-in" data-lightbox/>
+<img src="images/acharya-Photoroom.png" alt="Acharyasri Rajesh" class="max-h-[320px] md:max-h-[860px] w-auto object-contain drop-shadow-[0_0_60px_rgba(255,182,146,0.15)] cursor-zoom-in" data-lightbox/>
 </div>
 </div>
 </section>
 <!-- The Journey Section -->
-<section class="py-24 bg-surface-container-low relative yantra-texture">
-<div class="max-w-7xl mx-auto px-10 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<section class="py-12 md:py-24 bg-surface-container-low relative yantra-texture">
+<div class="max-w-7xl mx-auto px-5 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 items-center">
 <div class="order-2 md:order-1">
 <div class="relative">
-<div class="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-primary/20"></div>
+<div class="absolute -top-4 -left-4 md:-top-10 md:-left-10 w-16 h-16 md:w-40 md:h-40 border-t-2 border-l-2 border-primary/20"></div>
 <img class="rounded-lg shadow-2xl relative z-10 cursor-zoom-in" data-alt="a large gathering of people listening intently in a modern hall with warm ambient lighting and spiritual symbols" src="images/master_2_new.png" data-lightbox/>
 <div class="absolute -bottom-6 -right-6 glass-card p-6 rounded-lg z-20">
 <div class="text-secondary font-headline text-4xl font-bold">Lakhs</div>
@@ -145,8 +154,8 @@
 </div>
 </div>
 <div class="space-y-10 order-1 md:order-2">
-<h2 class="font-headline text-4xl font-bold text-on-surface">The Modern Rishi Who Popularized the Vedas</h2>
-<div class="space-y-6 text-lg text-on-surface-variant leading-relaxed">
+<h2 class="font-headline text-2xl md:text-4xl font-bold text-on-surface">The Modern Rishi Who Popularized the Vedas</h2>
+<div class="space-y-5 text-base md:text-lg text-on-surface-variant leading-relaxed">
 <p>Through tireless travel and profound oratory, Acharyasri Rajesh has spearheaded a global movement to rediscover the eternal relevance of Vedic wisdom.</p>
 <p>He has dedicated his life to stripping away superstition and revealing the scientific core of our ancient scriptures, making the Vedas accessible to the modern seeker without compromising their sacred essence.</p>
 </div>
@@ -164,9 +173,9 @@
 </div>
 </section>
 <!-- Prolific Author: Bento Gallery -->
-<section class="py-32 px-10 max-w-7xl mx-auto">
-<div class="text-center mb-20">
-<h2 class="font-headline text-5xl font-bold mb-6">A Prolific Author</h2>
+<section class="py-16 md:py-32 px-5 md:px-10 max-w-7xl mx-auto">
+<div class="text-center mb-10 md:mb-20">
+<h2 class="font-headline text-3xl md:text-5xl font-bold mb-4 md:mb-6">A Prolific Author</h2>
 <p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Authoring over 120 books, his writings serve as definitive guides for seekers exploring the depths of Hindu philosophy and Vedic rituals.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -174,7 +183,7 @@
 <div class="md:col-span-2 md:row-span-2 bg-surface-container relative group overflow-hidden rounded-xl border border-outline-variant/10">
 <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-80"></div>
 <img class="absolute inset-0 w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 cursor-zoom-in" data-alt="ornate ancient book with gold leaf patterns on its leather cover resting on dark wooden table" src="images/master_3_new.png" data-lightbox/>
-<div class="absolute bottom-0 left-0 p-10 z-20">
+<div class="absolute bottom-0 left-0 p-5 md:p-10 z-20">
 <span class="text-secondary font-label text-xs tracking-widest uppercase mb-2 block">Best Seller</span>
 <h3 class="font-headline text-3xl font-bold text-white mb-4">Hindu Dharma Rahasyam</h3>
 <p class="text-white/70 max-w-sm">The most comprehensive guide exploring the hidden secrets and profound logic behind Hindu practices.</p>
@@ -212,11 +221,11 @@
 </div>
 </section>
 <!-- Social Reformer Section -->
-<section class="bg-surface-container-lowest py-24">
-<div class="max-w-7xl mx-auto px-10">
-<div class="flex flex-col md:flex-row gap-16 items-center">
+<section class="bg-surface-container-lowest py-12 md:py-24">
+<div class="max-w-7xl mx-auto px-5 md:px-10">
+<div class="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
 <div class="md:w-1/2 space-y-8">
-<h2 class="font-headline text-4xl font-bold">A Silent Social Reformer</h2>
+<h2 class="font-headline text-2xl md:text-4xl font-bold">A Silent Social Reformer</h2>
 <p class="text-lg text-on-surface-variant leading-relaxed italic border-l-4 border-secondary pl-6">
                             "The Vedas recognize no caste, only character. They recognize no gender hierarchy, only spiritual equality."
                         </p>
@@ -246,25 +255,25 @@
 </div>
 </section>
 <!-- Awards & Recognition -->
-<section class="py-24 relative overflow-hidden">
+<section class="py-12 md:py-24 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full"></div>
-<div class="max-w-7xl mx-auto px-10 relative z-10">
-<h2 class="font-headline text-4xl font-bold mb-16 text-center">Honors &amp; Recognition</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="max-w-7xl mx-auto px-5 md:px-10 relative z-10">
+<h2 class="font-headline text-2xl md:text-4xl font-bold mb-8 md:mb-16 text-center">Honors &amp; Recognition</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 <!-- Award 1 -->
-<div class="glass-card p-10 rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-all group">
+<div class="glass-card p-6 md:p-10 rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-all group">
 <span class="material-symbols-outlined text-secondary text-5xl mb-6 transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">military_tech</span>
 <h4 class="font-headline text-xl font-bold mb-3 text-on-surface">Amrita Kirti Award</h4>
 <p class="text-on-surface-variant text-sm">For outstanding contributions to Indian culture and the preservation of Vedic traditions.</p>
 </div>
 <!-- Award 2 -->
-<div class="glass-card p-10 rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-all group">
+<div class="glass-card p-6 md:p-10 rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-all group">
 <span class="material-symbols-outlined text-secondary text-5xl mb-6 transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
 <h4 class="font-headline text-xl font-bold mb-3 text-on-surface">Mahashay Dharampal Rashtriya Arya Gaurav Samman</h4>
 <p class="text-on-surface-variant text-sm">Recognizing life-long dedication to the ideals of the Vedas and social awakening.</p>
 </div>
 <!-- Award 3 -->
-<div class="glass-card p-10 rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-all group">
+<div class="glass-card p-6 md:p-10 rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-all group">
 <span class="material-symbols-outlined text-secondary text-5xl mb-6 transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">stars</span>
 <h4 class="font-headline text-xl font-bold mb-3 text-on-surface">Vedic Research Excellence</h4>
 <p class="text-on-surface-variant text-sm">Awarded by international bodies for pioneering work in bringing Vedic science to the modern world.</p>
@@ -273,19 +282,19 @@
 </div>
 </section>
 <!-- Final CTA: The Call to Learning -->
-<section class="py-24 px-10">
-<div class="max-w-5xl mx-auto bg-gradient-to-br from-primary-container/20 to-secondary-container/20 p-16 rounded-3xl text-center relative overflow-hidden">
+<section class="py-12 md:py-24 px-5 md:px-10">
+<div class="max-w-5xl mx-auto bg-gradient-to-br from-primary-container/20 to-secondary-container/20 p-8 md:p-16 rounded-3xl text-center relative overflow-hidden">
 <div class="absolute inset-0 yantra-texture opacity-30"></div>
 <div class="relative z-10">
-<h2 class="font-headline text-4xl md:text-5xl font-bold mb-8">Begin Your Vedic Journey</h2>
-<p class="text-xl text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
+<h2 class="font-headline text-2xl md:text-4xl lg:text-5xl font-bold mb-5 md:mb-8">Begin Your Vedic Journey</h2>
+<p class="text-base md:text-xl text-on-surface-variant mb-6 md:mb-12 max-w-2xl mx-auto leading-relaxed">
                         Follow the path illuminated by Acharyasri Rajesh. Access his vast library of knowledge or enroll in guided courses to transform your life through ancient wisdom.
                     </p>
 <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-<a class="bg-secondary text-on-secondary px-10 py-5 rounded-lg font-bold text-lg hover:brightness-110 transition-all shadow-[0_10px_40px_rgba(233,195,73,0.3)]" href="https://learnveda.in">
+<a class="bg-secondary text-on-secondary px-6 py-4 md:px-10 md:py-5 rounded-lg font-bold text-base md:text-lg hover:brightness-110 transition-all shadow-[0_10px_40px_rgba(233,195,73,0.3)]" href="https://learnveda.in">
                             Join Courses at learnveda.in
                         </a>
-<a class="border-2 border-primary text-primary px-10 py-5 rounded-lg font-bold text-lg hover:bg-primary/10 transition-all" href="https://vedavidyaprakasan.com">
+<a class="border-2 border-primary text-primary px-6 py-4 md:px-10 md:py-5 rounded-lg font-bold text-base md:text-lg hover:bg-primary/10 transition-all" href="https://vedavidyaprakasan.com">
                             Browse Publications
                         </a>
 </div>
@@ -294,8 +303,8 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-[#1C1B1B] w-full pt-24 pb-12 font-sans text-sm tracking-wide leading-relaxed">
-<div class="max-w-7xl mx-auto px-12 grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left">
+<footer class="bg-[#1C1B1B] w-full pt-12 md:pt-24 pb-12 font-sans text-sm tracking-wide leading-relaxed">
+<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 text-center md:text-left">
 <div class="space-y-6">
 <div class="text-xl font-headline text-[#FFB692]">Athirathram 2026</div>
 <p class="text-[#E5E2E1]/60 max-w-xs mx-auto md:mx-0">Preserving the sacred resonance of the universe through the ancient Yajna of peace.</p>
@@ -316,7 +325,7 @@
 </ul>
 </div>
 </div>
-<div class="mt-20 pt-8 border-t border-outline-variant/10 text-center text-[#E5E2E1]/40">
+<div class="mt-10 md:mt-20 pt-8 border-t border-outline-variant/10 text-center text-[#E5E2E1]/40">
             © 2026 Kasyapa Veda Research Foundation. All Rights Sacred.
         </div>
 </footer>

@@ -84,49 +84,60 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
 <!-- TopNavBar -->
-<nav class="sticky top-0 w-full z-50 bg-[#131313]/90 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)] bg-gradient-to-b from-[#1C1B1B] to-transparent transition-all duration-500 ease-in-out">
-<div class="flex justify-between items-center px-10 py-6 max-w-screen-2xl mx-auto">
-<div class="text-2xl font-headline font-bold text-[#E9C349] tracking-widest">Athirathram 2026</div>
-<div class="hidden md:flex gap-10 items-center font-headline text-lg tracking-tight">
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)] transition-all" href="index.html">The Yajna</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)] transition-all" href="master.html">The Master</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)] transition-all" href="schedule.html">Schedule</a>
-<a class="text-[#E5E2E1]/80 hover:text-[#FFB692] hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)] transition-all" href="index.html#location">Location</a>
-<a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1 hover:drop-shadow-[0_0_8px_rgba(233,195,73,0.5)] transition-all" href="support.html">Support</a>
-</div>
-<a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-semibold transition-transform hover:scale-105">
-                Register/Donate
-            </a>
-</div>
+<header class="sticky top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)]">
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 md:py-6 max-w-screen-2xl mx-auto">
+  <div class="text-lg md:text-2xl font-serif font-bold text-[#E9C349] tracking-widest">Athirathram 2026</div>
+  <div class="hidden md:flex gap-10 items-center font-serif text-lg tracking-tight">
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html">The Yajna</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="master.html">The Master</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="schedule.html">Schedule</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#location">Location</a>
+    <a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1" href="support.html">Support</a>
+  </div>
+  <a href="support.html" class="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-semibold hover:scale-105 transition-transform">Register/Donate</a>
+  <button id="menu-toggle" onclick="var m=document.getElementById('mobile-menu');m.classList.toggle('hidden');this.querySelector('.bar1').classList.toggle('rotate-45');this.querySelector('.bar1').classList.toggle('translate-y-2');this.querySelector('.bar2').classList.toggle('opacity-0');this.querySelector('.bar3').classList.toggle('-rotate-45');this.querySelector('.bar3').classList.toggle('-translate-y-2');" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+    <span class="bar1 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar2 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar3 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+  </button>
 </nav>
+<div id="mobile-menu" class="hidden md:hidden bg-[#1C1B1B] border-t border-[#E9C349]/10 px-6 py-6 flex flex-col gap-5 font-serif text-lg">
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html">The Yajna</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="master.html">The Master</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="schedule.html">Schedule</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#location">Location</a>
+  <a class="text-[#FFB692] border-b border-[#E9C349]/30 pb-3" href="support.html">Support</a>
+  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center mt-2">Register/Donate</a>
+</div>
+</header>
 <main>
 <!-- Hero Section -->
-<section class="relative min-h-[716px] flex items-center justify-center overflow-hidden pt-16">
+<section class="relative min-h-[500px] md:min-h-[716px] flex items-center justify-center overflow-hidden pt-10 md:pt-16">
 <div class="absolute inset-0 z-0">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"></div>
 <img class="w-full h-full object-cover grayscale-[0.3] brightness-50" data-alt="dramatic wide shot of a sacred fire ritual at night with golden sparks rising into a dark star-filled sky" src="images/mass-gathering.png"/>
 </div>
 <div class="relative z-10 text-center max-w-4xl px-6">
 <span class="font-label text-secondary tracking-[0.4em] uppercase text-sm mb-6 block">The Vedic Legacy</span>
-<h1 class="font-headline text-5xl md:text-7xl lg:text-8xl text-on-background leading-tight mb-8">
+<h1 class="font-headline text-3xl md:text-5xl lg:text-8xl text-on-background leading-tight mb-6 md:mb-8">
                     Be a Recipient of the Grace of Lord <span class="text-[#E9C349] italic">Vedanarayana</span>.
                 </h1>
-<p class="font-body text-xl text-on-surface-variant max-w-2xl mx-auto mb-12 leading-relaxed">
+<p class="font-body text-base md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-6 md:mb-12 leading-relaxed">
                     Join hands in supporting the most ancient ritual of humanity. Your contribution ensures the flame of Vedic wisdom continues to enlighten the world.
                 </p>
 <div class="flex flex-col md:flex-row gap-6 justify-center">
-<a class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-10 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(255,119,34,0.3)] transition-all" href="#contribute">Contribute Now</a>
-<a class="bg-surface-variant/40 backdrop-blur-md border border-outline-variant/30 text-secondary px-10 py-4 rounded-lg font-bold text-lg hover:bg-surface-variant/60 transition-all" href="#volunteer">Become a Volunteer</a>
+<a class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 md:px-10 md:py-4 rounded-lg font-bold text-base md:text-lg hover:shadow-[0_0_30px_rgba(255,119,34,0.3)] transition-all" href="#contribute">Contribute Now</a>
+<a class="bg-surface-variant/40 backdrop-blur-md border border-outline-variant/30 text-secondary px-6 py-3 md:px-10 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-surface-variant/60 transition-all" href="#volunteer">Become a Volunteer</a>
 </div>
 </div>
 </section>
 <!-- Contribution Section -->
-<section class="py-24 px-6 md:px-12 max-w-7xl mx-auto" id="contribute">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+<section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto" id="contribute">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
 <!-- Financial Support Card -->
-<div class="bg-surface-container-low p-10 rounded-xl relative overflow-hidden">
+<div class="bg-surface-container-low p-6 md:p-10 rounded-xl relative overflow-hidden">
 <div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full -mr-24 -mt-24 blur-3xl"></div>
 <div class="flex items-center gap-4 mb-8">
 <span class="material-symbols-outlined text-4xl text-secondary" data-icon="account_balance">account_balance</span>
@@ -150,7 +161,7 @@
 </div>
 <!-- UPI & QR Grid -->
 <div class="space-y-12">
-<div class="bg-surface-container p-10 rounded-xl flex flex-col md:flex-row gap-10 items-center">
+<div class="bg-surface-container p-6 md:p-10 rounded-xl flex flex-col md:flex-row gap-6 md:gap-10 items-center">
 <div class="shrink-0 bg-white p-4 rounded-lg shadow-[0_0_40px_rgba(255,255,255,0.05)]">
 <img class="w-40 h-40 object-contain grayscale" data-alt="clean digital qr code for mobile payment on white background with minimalist framing" src="images/support_2.jpg"/>
 </div>
@@ -164,7 +175,7 @@
 </div>
 </div>
 </div>
-<div class="bg-gradient-to-br from-[#1C1B1B] to-surface-container p-10 rounded-xl">
+<div class="bg-gradient-to-br from-[#1C1B1B] to-surface-container p-6 md:p-10 rounded-xl">
 <h3 class="font-headline text-2xl text-on-background mb-4">Tax Benefits</h3>
 <p class="text-on-surface-variant mb-6">Contributions to Kasyapa Veda Research Foundation are eligible for tax exemption under section 80G of the Income Tax Act.</p>
 <a class="text-primary font-semibold flex items-center gap-2 hover:translate-x-2 transition-transform" href="#">
@@ -175,11 +186,11 @@
 </div>
 </section>
 <!-- Volunteer Section -->
-<section class="py-24 bg-surface-container-low" id="volunteer">
+<section class="py-12 md:py-24 bg-surface-container-low" id="volunteer">
 <div class="max-w-7xl mx-auto px-6 md:px-12">
-<div class="text-center mb-16">
-<span class="material-symbols-outlined text-5xl text-primary mb-4" data-icon="diversity_3">diversity_3</span>
-<h2 class="font-headline text-4xl md:text-5xl text-on-background mb-6">Seva: Join Our Volunteer Teams</h2>
+<div class="text-center mb-8 md:mb-16">
+<span class="material-symbols-outlined text-4xl md:text-5xl text-primary mb-4" data-icon="diversity_3">diversity_3</span>
+<h2 class="font-headline text-2xl md:text-4xl lg:text-5xl text-on-background mb-4 md:mb-6">Seva: Join Our Volunteer Teams</h2>
 <p class="text-on-surface-variant max-w-2xl mx-auto text-lg">The Yajna is a massive collective effort. We invite dedicated individuals to offer their skills in service of the sacred.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -209,31 +220,31 @@
 </div>
 </div>
 <div class="mt-16 text-center">
-<button class="bg-secondary text-on-secondary px-12 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_25px_rgba(233,195,73,0.3)] transition-all">Register as a Volunteer</button>
+<button class="bg-secondary text-on-secondary px-8 py-4 md:px-12 rounded-lg font-bold text-base md:text-lg hover:shadow-[0_0_25px_rgba(233,195,73,0.3)] transition-all">Register as a Volunteer</button>
 </div>
 </div>
 </section>
 <!-- Social Impact / Bento Grid -->
-<section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12 gap-5 md:gap-6">
 <div class="max-w-xl">
 <h2 class="font-headline text-4xl text-on-background mb-4">Beyond the Ritual</h2>
 <p class="text-on-surface-variant">Kasyapa Veda Research Foundation (KVRF) translates Vedic philosophy into tangible social upliftment across India.</p>
 </div>
 <div class="h-[1px] bg-outline-variant/30 flex-grow mx-8 hidden lg:block"></div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 <!-- Indigenous Cattle -->
 <div class="md:col-span-7 bg-surface-container-low rounded-2xl relative overflow-hidden group">
 <img class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" data-alt="noble indigenous indian bull with large horns in a sunset meadow, soft focus golden lighting" src="images/support_3.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
-<div class="absolute bottom-0 left-0 p-10">
-<h3 class="font-headline text-3xl text-on-background mb-2">Indigenous Cattle Preservation</h3>
+<div class="absolute bottom-0 left-0 p-6 md:p-10">
+<h3 class="font-headline text-2xl md:text-3xl text-on-background mb-2">Indigenous Cattle Preservation</h3>
 <p class="text-on-surface-variant max-w-md">Conservation of Gir and the rare Kasaragod Kullen breeds, preserving sacred biodiversity.</p>
 </div>
 </div>
 <!-- Housing -->
-<div class="md:col-span-5 bg-surface-container rounded-2xl p-10 flex flex-col justify-end">
+<div class="md:col-span-5 bg-surface-container rounded-2xl p-6 md:p-10 flex flex-col justify-end">
 <span class="material-symbols-outlined text-4xl text-primary mb-6" data-icon="home_work">home_work</span>
 <h3 class="font-headline text-2xl text-on-background mb-2">Housing Projects</h3>
 <p class="text-on-surface-variant mb-6">Building dignified homes for the underprivileged and displaced families in rural communities.</p>
@@ -242,7 +253,7 @@
 </div>
 </div>
 <!-- Pension & Relief -->
-<div class="md:col-span-5 bg-surface-container rounded-2xl p-10 flex flex-col justify-between">
+<div class="md:col-span-5 bg-surface-container rounded-2xl p-6 md:p-10 flex flex-col justify-between">
 <div>
 <h3 class="font-headline text-2xl text-on-background mb-4">Pension Schemes</h3>
 <p class="text-on-surface-variant">Supporting elderly Veda Pathashala teachers and marginalized widows with monthly sustenance.</p>
@@ -257,7 +268,7 @@
 <div class="md:col-span-7 bg-surface-container-low rounded-2xl relative overflow-hidden group">
 <img class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000" data-alt="community workers distributing relief supplies in a rural village setting with warm humanitarian lighting" src="images/support_6.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-tr from-surface via-surface/40 to-transparent"></div>
-<div class="absolute inset-0 p-10 flex flex-col justify-end">
+<div class="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
 <h3 class="font-headline text-3xl text-on-background mb-2">Disaster Relief</h3>
 <p class="text-on-surface-variant max-w-md">Immediate on-ground response during natural calamities, providing food, shelter, and medical aid.</p>
 </div>
@@ -265,10 +276,10 @@
 </div>
 </section>
 <!-- Message from Trustee -->
-<section class="py-24 bg-surface-container-lowest">
+<section class="py-12 md:py-24 bg-surface-container-lowest">
 <div class="max-w-5xl mx-auto px-6 text-center">
-<span class="material-symbols-outlined text-4xl text-outline-variant mb-8" data-icon="format_quote">format_quote</span>
-<blockquote class="font-headline text-3xl md:text-4xl text-on-background leading-relaxed italic mb-10">
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-6 md:mb-8" data-icon="format_quote">format_quote</span>
+<blockquote class="font-headline text-xl md:text-3xl lg:text-4xl text-on-background leading-relaxed italic mb-8 md:mb-10">
                     "Athirathram is not just a ritual; it is a cosmic surgery for the soul of our planet. When you support KVRF, you are not just donating; you are becoming a guardian of an unbroken lineage of human wisdom."
                 </blockquote>
 <div class="flex flex-col items-center">
@@ -281,26 +292,26 @@
 </div>
 </section>
 <!-- Closing CTA -->
-<section class="py-24 px-6">
-<div class="max-w-7xl mx-auto bg-gradient-to-r from-[#1C1B1B] to-surface-container-low rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+<section class="py-12 md:py-24 px-6">
+<div class="max-w-7xl mx-auto bg-gradient-to-r from-[#1C1B1B] to-surface-container-low rounded-3xl p-8 md:p-20 text-center relative overflow-hidden">
 <div class="absolute inset-0 opacity-5">
 <!-- Subtle pattern placeholder -->
 <div class="w-full h-full" style="background-image: radial-gradient(#E9C349 1px, transparent 1px); background-size: 30px 30px;"></div>
 </div>
 <div class="relative z-10">
-<h2 class="font-headline text-4xl md:text-5xl text-on-background mb-8">Kasyapa Veda Research Foundation</h2>
-<p class="font-label text-primary text-xl tracking-[0.3em] uppercase mb-12">Guardians of Sacred Heritage</p>
+<h2 class="font-headline text-2xl md:text-4xl lg:text-5xl text-on-background mb-5 md:mb-8">Kasyapa Veda Research Foundation</h2>
+<p class="font-label text-primary text-base md:text-xl tracking-[0.3em] uppercase mb-6 md:mb-12">Guardians of Sacred Heritage</p>
 <div class="flex flex-col sm:flex-row gap-6 justify-center">
-<button class="bg-primary text-on-primary-fixed px-12 py-4 rounded-lg font-bold">Donate Securely</button>
-<button class="border border-outline-variant text-on-surface px-12 py-4 rounded-lg font-bold hover:bg-surface-variant transition-colors">Contact Foundation</button>
+<button class="bg-primary text-on-primary-fixed px-8 py-4 md:px-12 rounded-lg font-bold">Donate Securely</button>
+<button class="border border-outline-variant text-on-surface px-8 py-4 md:px-12 rounded-lg font-bold hover:bg-surface-variant transition-colors">Contact Foundation</button>
 </div>
 </div>
 </div>
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-[#1C1B1B] w-full pt-24 pb-12">
-<div class="max-w-7xl mx-auto px-12 grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left">
+<footer class="bg-[#1C1B1B] w-full pt-12 md:pt-24 pb-12">
+<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 text-center md:text-left">
 <div>
 <div class="text-xl font-headline text-[#FFB692] mb-6">Athirathram 2026</div>
 <p class="font-body text-sm tracking-wide leading-relaxed text-[#E5E2E1]/60 mb-6 max-w-xs">
@@ -330,7 +341,7 @@
 </div>
 </div>
 </div>
-<div class="mt-20 pt-12 border-t border-outline-variant/10 text-center">
+<div class="mt-10 md:mt-20 pt-8 border-t border-outline-variant/10 text-center">
 <p class="font-body text-sm tracking-wide text-[#E5E2E1]/60">© 2026 Kasyapa Veda Research Foundation. All Rights Sacred.</p>
 </div>
 </footer>
