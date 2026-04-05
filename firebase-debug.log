@@ -34,3 +34,7 @@
 [debug] [2026-03-27T09:47:36.010Z] > authorizing via signed-in user (indrajith@rudx.ai)
 [debug] [2026-03-27T09:47:36.010Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
 [debug] [2026-03-27T09:47:36.010Z] > authorizing via signed-in user (indrajith@rudx.ai)
+[debug] [2026-04-05T18:12:59.327Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-05T18:12:59.329Z] > authorizing via signed-in user (indrajith@rudx.ai)
+[debug] [2026-04-05T18:12:59.330Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-05T18:12:59.330Z] > authorizing via signed-in user (indrajith@rudx.ai)
