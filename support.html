@@ -134,6 +134,21 @@
 </div>
 </div>
 </section>
+<!-- Sankalpa Section -->
+<section class="py-14 md:py-20 relative overflow-hidden bg-surface-container-low">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/3 w-96 h-96 bg-secondary/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"></div>
+  </div>
+  <div class="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-center">
+    <span class="inline-block py-1 px-4 border border-secondary/20 bg-secondary/10 text-secondary text-xs font-label tracking-[0.25em] uppercase mb-6">The Sacred Purpose</span>
+    <p class="font-serif text-lg md:text-xl lg:text-2xl text-on-surface leading-relaxed md:leading-loose">
+      For the attainment of <span class="text-primary">full lifespan</span>, enthusiasm in life, well-being, and as remedy for untimely death, premature death, and terrible death; for the unobstructed completion of karmas, <span class="text-secondary">fulfillment of desires</span>, prosperity and abundance, cure of all diseases, attainment of good health, <span class="text-primary">favor of all people</span>, attainment of good knowledge and wisdom, attainment of virtuous progeny, growth of lineage, <span class="text-secondary">longevity, fortune, and fame</span> for children, household fortune, family fortune, marital fortune, good reputation, and glory.
+    </p>
+    <div class="mt-8 w-16 h-0.5 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+  </div>
+</section>
+
 <!-- Contribution Section -->
 <section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto" id="contribute">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -166,15 +181,65 @@
 </div>
 <!-- UPI & QR Grid -->
 <div class="space-y-12">
-<div class="bg-surface-container p-6 md:p-10 rounded-xl flex flex-col md:flex-row gap-6 md:gap-10 items-center">
-<div class="shrink-0 bg-white rounded-xl p-4 flex flex-col items-center gap-3 shadow-lg">
-<img class="w-52 h-52 object-contain" alt="Scan to pay - Kasyapa Veda Research Foundation" src="images/payment-qr.png"/>
-<img src="images/upi-apps.png" alt="BHIM UPI — Google Pay, PhonePe, Paytm, Amazon Pay" class="w-52 object-contain"/>
-</div>
-<div>
-<h3 class="font-headline text-2xl text-on-background mb-4">Scan for UPI Payment</h3>
-<p class="text-on-surface-variant mb-6">A quick, secure way to support the sacred mission directly from your smartphone.</p>
-</div>
+<div class="bg-surface-container p-6 md:p-10 rounded-xl flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+
+  <!-- QR with blur overlay -->
+  <div class="shrink-0 flex flex-col items-center">
+    <div class="relative">
+      <!-- Blurred QR card -->
+      <div id="qr-card" class="bg-white rounded-xl p-4 flex flex-col items-center gap-3 shadow-lg transition-all duration-700">
+        <img id="qr-img" class="w-52 h-52 object-contain blur-md select-none pointer-events-none transition-all duration-700" alt="Scan to pay" src="images/payment-qr.png"/>
+        <img src="images/upi-apps.png" alt="BHIM UPI" class="w-52 object-contain"/>
+      </div>
+      <!-- Lock overlay -->
+      <div id="qr-lock" class="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-black/30 backdrop-blur-sm cursor-default">
+        <span class="material-symbols-outlined text-white text-4xl mb-2" style="font-variation-settings:'FILL' 1">lock</span>
+        <p class="text-white text-xs font-bold tracking-widest uppercase text-center px-4">Fill details<br/>to reveal</p>
+      </div>
+    </div>
+    <!-- Success state (hidden initially) -->
+    <p id="qr-success-msg" class="hidden mt-3 text-xs text-primary font-bold uppercase tracking-widest text-center">Scan to pay</p>
+  </div>
+
+  <!-- Donor Details Form -->
+  <div class="flex-1 w-full">
+    <h3 class="font-headline text-2xl text-on-background mb-2">Scan for UPI Payment</h3>
+    <p class="text-on-surface-variant mb-6 text-sm">Please provide your details before scanning. Required for our records as per FCRA guidelines.</p>
+
+    <form id="donor-form" class="space-y-4" novalidate>
+      <!-- Name -->
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="donor-name">Full Name <span class="text-primary">*</span></label>
+        <input id="donor-name" type="text" placeholder="As per Aadhaar" required
+          class="w-full bg-surface border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors"/>
+      </div>
+      <!-- Aadhaar -->
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="donor-aadhaar">Aadhaar Number <span class="text-primary">*</span></label>
+        <input id="donor-aadhaar" type="text" placeholder="XXXX XXXX XXXX" maxlength="14" required
+          class="w-full bg-surface border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest"/>
+      </div>
+      <!-- PAN checkbox -->
+      <div class="flex items-center gap-3 pt-1">
+        <input id="pan-check" type="checkbox" class="w-4 h-4 accent-primary cursor-pointer" onchange="document.getElementById('pan-field').classList.toggle('hidden', !this.checked)"/>
+        <label for="pan-check" class="text-sm text-on-surface-variant cursor-pointer">I want <span class="text-secondary font-semibold">tax benefits</span> under 80G — enter PAN</label>
+      </div>
+      <!-- PAN field (hidden by default) -->
+      <div id="pan-field" class="hidden">
+        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="donor-pan">PAN Number</label>
+        <input id="donor-pan" type="text" placeholder="ABCDE1234F" maxlength="10"
+          class="w-full bg-surface border border-outline-variant/30 focus:border-secondary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest uppercase"/>
+      </div>
+      <!-- Error -->
+      <p id="form-error" class="hidden text-red-400 text-xs font-medium"></p>
+      <!-- Submit -->
+      <button type="submit" id="reveal-btn"
+        class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-bold py-3 rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-base">qr_code_scanner</span>
+        Reveal QR Code
+      </button>
+    </form>
+  </div>
 </div>
 <div class="bg-gradient-to-br from-[#1C1B1B] to-surface-container p-6 md:p-10 rounded-xl">
 <h3 class="font-headline text-2xl text-on-background mb-4">Tax Benefits</h3>
@@ -309,4 +374,87 @@
 <p class="font-body text-sm tracking-wide text-[#E5E2E1]/60">© 2026 Kasyapa Veda Research Foundation. All Rights Sacred.</p>
 </div>
 </footer>
+
+<script>
+(function () {
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwrvROrMnfoGuJljkH4eyIYuBjFjJO7rEVS6abvZKbBz690FULa7mfC1RaBhz9BczGO/exec';
+
+  const form = document.getElementById('donor-form');
+  const qrImg = document.getElementById('qr-img');
+  const qrLock = document.getElementById('qr-lock');
+  const qrSuccessMsg = document.getElementById('qr-success-msg');
+  const revealBtn = document.getElementById('reveal-btn');
+  const formError = document.getElementById('form-error');
+
+  // Format Aadhaar as XXXX XXXX XXXX while typing
+  document.getElementById('donor-aadhaar').addEventListener('input', function () {
+    let v = this.value.replace(/\D/g, '').substring(0, 12);
+    this.value = v.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+  });
+
+  // Uppercase PAN
+  document.getElementById('donor-pan').addEventListener('input', function () {
+    this.value = this.value.toUpperCase();
+  });
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    formError.classList.add('hidden');
+
+    const name = document.getElementById('donor-name').value.trim();
+    const aadhaar = document.getElementById('donor-aadhaar').value.replace(/\s/g, '');
+    const panCheck = document.getElementById('pan-check').checked;
+    const pan = document.getElementById('donor-pan').value.trim();
+
+    // Validation
+    if (!name) return showError('Please enter your full name.');
+    if (aadhaar.length !== 12 || !/^\d{12}$/.test(aadhaar)) return showError('Please enter a valid 12-digit Aadhaar number.');
+    if (panCheck && !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) return showError('Please enter a valid PAN (e.g. ABCDE1234F).');
+
+    // Loading state
+    revealBtn.disabled = true;
+    revealBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Saving...';
+
+    try {
+      // Fetch IP first, fallback to unknown
+      let ip = '—';
+      try {
+        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipRes.json();
+        ip = ipData.ip || '—';
+      } catch (_) {}
+
+      const params = new URLSearchParams({
+        name,
+        aadhaar,
+        pan: panCheck ? pan : '—',
+        ip,
+      });
+
+      await fetch(SHEET_URL + '?' + params.toString(), {
+        method: 'GET',
+        mode: 'no-cors',
+      });
+
+      revealQR();
+    } catch (err) {
+      revealQR();
+    }
+  });
+
+  function revealQR() {
+    qrImg.classList.remove('blur-md');
+    qrLock.classList.add('hidden');
+    qrSuccessMsg.classList.remove('hidden');
+    form.innerHTML = '<p class="text-primary font-bold text-center py-4 flex items-center gap-2 justify-center"><span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">check_circle</span> Details saved. Scan the QR to complete your donation.</p>';
+  }
+
+  function showError(msg) {
+    formError.textContent = msg;
+    formError.classList.remove('hidden');
+    revealBtn.disabled = false;
+    revealBtn.innerHTML = '<span class="material-symbols-outlined text-base">qr_code_scanner</span> Reveal QR Code';
+  }
+})();
+</script>
 </body></html>
