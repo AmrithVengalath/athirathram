@@ -150,106 +150,92 @@
 </section>
 
 <!-- Contribution Section -->
-<section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto" id="contribute">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
-<!-- Financial Support Card -->
-<div class="bg-surface-container-low p-6 md:p-10 rounded-xl relative overflow-hidden">
-<div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full -mr-24 -mt-24 blur-3xl"></div>
-<div class="flex items-center gap-4 mb-8">
-<span class="material-symbols-outlined text-4xl text-secondary" data-icon="account_balance">account_balance</span>
-<h2 class="font-headline text-3xl text-on-background">Financial Contribution</h2>
-</div>
-<p class="text-on-surface-variant mb-10 text-lg">Direct bank transfers allow us to utilize 100% of your support for the Yajna infrastructure and Vedic research.</p>
-<div class="space-y-6">
-<div class="p-6 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
-<span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">Bank Name</span>
-<span class="text-xl font-medium text-on-surface">Axis Bank, Calicut Branch</span>
-</div>
-<div class="p-6 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
-<span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">Account Name</span>
-<span class="text-xl font-medium text-on-surface">Kasyapa Veda Research Foundation</span>
-</div>
-<div class="p-6 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
-<span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">Account Number</span>
-<span class="text-2xl font-bold text-[#E9C349] tracking-wider">911010048231503</span>
-</div>
-<div class="p-6 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
-<span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">IFSC Code</span>
-<span class="text-xl font-medium text-on-surface">UTIB0000136</span>
-</div>
-</div>
-</div>
-<!-- UPI & QR Grid -->
-<div class="space-y-12">
-<div class="bg-surface-container p-6 md:p-10 rounded-xl flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+<section class="py-12 md:py-24 px-6 md:px-12 max-w-4xl mx-auto" id="contribute">
 
-  <!-- QR with blur overlay -->
-  <div class="shrink-0 flex flex-col items-center">
-    <div class="relative">
-      <!-- Blurred QR card -->
-      <div id="qr-card" class="bg-white rounded-xl p-4 flex flex-col items-center gap-3 shadow-lg transition-all duration-700">
-        <img id="qr-img" class="w-52 h-52 object-contain blur-md select-none pointer-events-none transition-all duration-700" alt="Scan to pay" src="images/payment-qr.png"/>
-        <img src="images/upi-apps.png" alt="BHIM UPI" class="w-52 object-contain"/>
-      </div>
-      <!-- Lock overlay -->
-      <div id="qr-lock" class="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-black/30 backdrop-blur-sm cursor-default">
-        <span class="material-symbols-outlined text-white text-4xl mb-2" style="font-variation-settings:'FILL' 1">lock</span>
-        <p class="text-white text-xs font-bold tracking-widest uppercase text-center px-4">Fill details<br/>to reveal</p>
-      </div>
+  <!-- Donor form -->
+  <div id="sp-form-wrap" class="bg-surface-container-low rounded-xl p-6 md:p-10 mb-6">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="material-symbols-outlined text-3xl text-secondary" style="font-variation-settings:'FILL' 1">account_balance</span>
+      <h2 class="font-headline text-2xl md:text-3xl text-on-background">Financial Contribution</h2>
     </div>
-    <!-- Success state (hidden initially) -->
-    <p id="qr-success-msg" class="hidden mt-3 text-xs text-primary font-bold uppercase tracking-widest text-center">Scan to pay</p>
-  </div>
-
-  <!-- Donor Details Form -->
-  <div class="flex-1 w-full">
-    <h3 class="font-headline text-2xl text-on-background mb-2">Scan for UPI Payment</h3>
-    <p class="text-on-surface-variant mb-6 text-sm">Please provide your details before scanning. Required for our records as per FCRA guidelines.</p>
-
-    <form id="donor-form" class="space-y-4" novalidate>
-      <!-- Name -->
-      <div>
-        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="donor-name">Full Name <span class="text-primary">*</span></label>
-        <input id="donor-name" type="text" placeholder="As per Aadhaar" required
-          class="w-full bg-surface border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors"/>
+    <p class="text-on-surface-variant mb-6 text-sm">Please provide your details to view payment information. Required as per FCRA guidelines.</p>
+    <form id="sp-donor-form" class="space-y-4" novalidate>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="sp-name">Full Name <span class="text-primary">*</span></label>
+          <input id="sp-name" type="text" placeholder="As per Aadhaar" required
+            class="w-full bg-surface border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors"/>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="sp-aadhaar">Aadhaar Number <span class="text-primary">*</span></label>
+          <input id="sp-aadhaar" type="text" placeholder="XXXX XXXX XXXX" maxlength="14" required
+            class="w-full bg-surface border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest"/>
+        </div>
       </div>
-      <!-- Aadhaar -->
-      <div>
-        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="donor-aadhaar">Aadhaar Number <span class="text-primary">*</span></label>
-        <input id="donor-aadhaar" type="text" placeholder="XXXX XXXX XXXX" maxlength="14" required
-          class="w-full bg-surface border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest"/>
+      <div class="flex items-center gap-3">
+        <input id="sp-pan-check" type="checkbox" class="w-4 h-4 accent-primary cursor-pointer" onchange="document.getElementById('sp-pan-field').classList.toggle('hidden', !this.checked)"/>
+        <label for="sp-pan-check" class="text-sm text-on-surface-variant cursor-pointer">I want <span class="text-secondary font-semibold">tax benefits</span> under 80G — enter PAN</label>
       </div>
-      <!-- PAN checkbox -->
-      <div class="flex items-center gap-3 pt-1">
-        <input id="pan-check" type="checkbox" class="w-4 h-4 accent-primary cursor-pointer" onchange="document.getElementById('pan-field').classList.toggle('hidden', !this.checked)"/>
-        <label for="pan-check" class="text-sm text-on-surface-variant cursor-pointer">I want <span class="text-secondary font-semibold">tax benefits</span> under 80G — enter PAN</label>
-      </div>
-      <!-- PAN field (hidden by default) -->
-      <div id="pan-field" class="hidden">
-        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="donor-pan">PAN Number</label>
-        <input id="donor-pan" type="text" placeholder="ABCDE1234F" maxlength="10"
+      <div id="sp-pan-field" class="hidden">
+        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="sp-pan">PAN Number</label>
+        <input id="sp-pan" type="text" placeholder="ABCDE1234F" maxlength="10"
           class="w-full bg-surface border border-outline-variant/30 focus:border-secondary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest uppercase"/>
       </div>
-      <!-- Error -->
-      <p id="form-error" class="hidden text-red-400 text-xs font-medium"></p>
-      <!-- Submit -->
-      <button type="submit" id="reveal-btn"
+      <p id="sp-form-error" class="hidden text-red-400 text-xs font-medium"></p>
+      <button type="submit" id="sp-reveal-btn"
         class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-bold py-3 rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-base">qr_code_scanner</span>
-        Reveal QR Code
+        <span class="material-symbols-outlined text-base">lock_open</span>
+        Show Payment Details
       </button>
     </form>
   </div>
-</div>
-<div class="bg-gradient-to-br from-[#1C1B1B] to-surface-container p-6 md:p-10 rounded-xl">
-<h3 class="font-headline text-2xl text-on-background mb-4">Tax Benefits</h3>
-<p class="text-on-surface-variant mb-6">Contributions to Kasyapa Veda Research Foundation are eligible for tax exemption under section 80G of the Income Tax Act.</p>
-<a class="text-primary font-semibold flex items-center gap-2 hover:translate-x-2 transition-transform" href="#">
-                            Download Receipt Instructions <span class="material-symbols-outlined" data-icon="arrow_right_alt">arrow_right_alt</span>
-</a>
-</div>
-</div>
-</div>
+
+  <!-- Payment card (blurred until unlocked) -->
+  <div id="sp-payment-card" class="relative rounded-xl overflow-hidden">
+    <div id="sp-card-content" class="bg-surface-container p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 blur-sm pointer-events-none select-none transition-all duration-700">
+      <!-- Bank details -->
+      <div>
+        <h4 class="font-bold text-secondary uppercase tracking-widest text-sm mb-6">Bank Transfer Details</h4>
+        <div class="space-y-4">
+          <div class="p-4 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
+            <span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">Account Name</span>
+            <span class="font-medium text-on-surface">Kasyapa Veda Research Foundation</span>
+          </div>
+          <div class="p-4 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
+            <span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">Bank</span>
+            <span class="font-medium text-on-surface">Axis Bank, Calicut Branch</span>
+          </div>
+          <div class="p-4 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
+            <span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">Account Number</span>
+            <span class="text-xl font-bold text-[#E9C349] tracking-wider">911010048231503</span>
+          </div>
+          <div class="p-4 bg-surface-container-highest/30 border-l-4 border-primary rounded-r-lg">
+            <span class="text-xs font-label uppercase tracking-widest text-outline block mb-1">IFSC Code</span>
+            <span class="font-medium text-on-surface">UTIB0000136</span>
+          </div>
+        </div>
+      </div>
+      <!-- QR -->
+      <div class="flex flex-col items-center justify-center gap-4">
+        <div class="bg-white rounded-xl p-4 flex flex-col items-center gap-3 shadow-lg">
+          <img class="w-52 h-52 object-contain" alt="Scan to pay" src="images/payment-qr.png"/>
+          <img src="images/upi-apps.png" alt="BHIM UPI" class="w-52 object-contain"/>
+        </div>
+      </div>
+    </div>
+    <!-- Lock overlay -->
+    <div id="sp-card-lock" class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm rounded-xl">
+      <span class="material-symbols-outlined text-white text-5xl mb-3" style="font-variation-settings:'FILL' 1">lock</span>
+      <p class="text-white font-bold tracking-widest uppercase text-sm">Fill details above to unlock</p>
+    </div>
+  </div>
+
+  <!-- Tax benefits -->
+  <div class="bg-gradient-to-br from-[#1C1B1B] to-surface-container p-6 md:p-8 rounded-xl mt-6">
+    <h3 class="font-headline text-xl text-on-background mb-3">Tax Benefits</h3>
+    <p class="text-on-surface-variant text-sm">Contributions to Kasyapa Veda Research Foundation are eligible for tax exemption under section 80G of the Income Tax Act.</p>
+  </div>
+
 </section>
 <!-- Social Impact / Bento Grid -->
 <section class="py-12 md:py-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -379,21 +365,21 @@
 (function () {
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwrvROrMnfoGuJljkH4eyIYuBjFjJO7rEVS6abvZKbBz690FULa7mfC1RaBhz9BczGO/exec';
 
-  const form = document.getElementById('donor-form');
-  const qrImg = document.getElementById('qr-img');
-  const qrLock = document.getElementById('qr-lock');
-  const qrSuccessMsg = document.getElementById('qr-success-msg');
-  const revealBtn = document.getElementById('reveal-btn');
-  const formError = document.getElementById('form-error');
+  const form = document.getElementById('sp-donor-form');
+  const cardContent = document.getElementById('sp-card-content');
+  const cardLock = document.getElementById('sp-card-lock');
+  const formWrap = document.getElementById('sp-form-wrap');
+  const revealBtn = document.getElementById('sp-reveal-btn');
+  const formError = document.getElementById('sp-form-error');
 
   // Format Aadhaar as XXXX XXXX XXXX while typing
-  document.getElementById('donor-aadhaar').addEventListener('input', function () {
+  document.getElementById('sp-aadhaar').addEventListener('input', function () {
     let v = this.value.replace(/\D/g, '').substring(0, 12);
     this.value = v.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
   });
 
   // Uppercase PAN
-  document.getElementById('donor-pan').addEventListener('input', function () {
+  document.getElementById('sp-pan').addEventListener('input', function () {
     this.value = this.value.toUpperCase();
   });
 
@@ -401,10 +387,10 @@
     e.preventDefault();
     formError.classList.add('hidden');
 
-    const name = document.getElementById('donor-name').value.trim();
-    const aadhaar = document.getElementById('donor-aadhaar').value.replace(/\s/g, '');
-    const panCheck = document.getElementById('pan-check').checked;
-    const pan = document.getElementById('donor-pan').value.trim();
+    const name = document.getElementById('sp-name').value.trim();
+    const aadhaar = document.getElementById('sp-aadhaar').value.replace(/\s/g, '');
+    const panCheck = document.getElementById('sp-pan-check').checked;
+    const pan = document.getElementById('sp-pan').value.trim();
 
     // Validation
     if (!name) return showError('Please enter your full name.');
@@ -436,24 +422,23 @@
         mode: 'no-cors',
       });
 
-      revealQR();
+      revealPayment();
     } catch (err) {
-      revealQR();
+      revealPayment();
     }
   });
 
-  function revealQR() {
-    qrImg.classList.remove('blur-md');
-    qrLock.classList.add('hidden');
-    qrSuccessMsg.classList.remove('hidden');
-    form.innerHTML = '<p class="text-primary font-bold text-center py-4 flex items-center gap-2 justify-center"><span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">check_circle</span> Details saved. Scan the QR to complete your donation.</p>';
+  function revealPayment() {
+    cardContent.classList.remove('blur-sm', 'pointer-events-none', 'select-none');
+    cardLock.classList.add('hidden');
+    formWrap.innerHTML = '<p class="text-primary font-bold text-center py-4 flex items-center gap-2 justify-center"><span class="material-symbols-outlined" style="font-variation-settings:\'FILL\' 1">check_circle</span> Details saved. Please use the payment details below to complete your donation.</p>';
   }
 
   function showError(msg) {
     formError.textContent = msg;
     formError.classList.remove('hidden');
     revealBtn.disabled = false;
-    revealBtn.innerHTML = '<span class="material-symbols-outlined text-base">qr_code_scanner</span> Reveal QR Code';
+    revealBtn.innerHTML = '<span class="material-symbols-outlined text-base">lock_open</span> Show Payment Details';
   }
 })();
 </script>
