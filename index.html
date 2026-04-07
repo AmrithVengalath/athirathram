@@ -677,15 +677,17 @@
   <h4 class="font-serif text-xl text-on-surface mb-1">Enter your details to view payment info</h4>
   <p class="text-on-surface-variant text-sm mb-6">Required for our records as per FCRA guidelines.</p>
   <form id="idx-donor-form" class="space-y-4" novalidate>
-    <div>
-      <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="idx-name">Full Name <span class="text-primary">*</span></label>
-      <input id="idx-name" type="text" placeholder="As per Aadhaar" required
-        class="w-full bg-surface-container border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors"/>
-    </div>
-    <div>
-      <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="idx-aadhaar">Aadhaar Number <span class="text-primary">*</span></label>
-      <input id="idx-aadhaar" type="text" placeholder="XXXX XXXX XXXX" maxlength="14" required
-        class="w-full bg-surface-container border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest"/>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="idx-name">Full Name <span class="text-primary">*</span></label>
+        <input id="idx-name" type="text" placeholder="As per Aadhaar" required
+          class="w-full bg-surface-container border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors"/>
+      </div>
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="idx-aadhaar">Aadhaar Number <span class="text-primary">*</span></label>
+        <input id="idx-aadhaar" type="text" placeholder="XXXX XXXX XXXX" maxlength="14" required
+          class="w-full bg-surface-container border border-outline-variant/30 focus:border-primary rounded-lg px-4 py-3 text-on-surface placeholder:text-outline-variant text-sm outline-none transition-colors font-mono tracking-widest"/>
+      </div>
     </div>
     <div class="flex items-center gap-3 pt-1">
       <input id="idx-pan-check" type="checkbox" class="w-4 h-4 accent-primary cursor-pointer" onchange="document.getElementById('idx-pan-field').classList.toggle('hidden', !this.checked)"/>
