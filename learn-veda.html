@@ -84,7 +84,7 @@
     border: 1px solid rgba(88,66,55,0.4);
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
-    color: #e5e2e1;
+    color: #111111;
     font-size: 0.875rem;
     outline: none;
     transition: border-color 0.2s;
@@ -277,9 +277,9 @@
       </div>
       <h3 class="font-headline text-2xl md:text-3xl text-on-background mb-3">Registration Received</h3>
       <p class="text-on-surface-variant leading-relaxed mb-8 max-w-md mx-auto">Thank you for your interest. Our team will reach out to you on your WhatsApp number to share details about the Learn Veda programme.</p>
-      <a href="index.html" class="inline-block border border-outline-variant text-on-surface px-8 py-3 rounded-lg font-semibold hover:bg-surface-variant transition-colors text-sm">
-        Back to Home
-      </a>
+      <button onclick="resetForm()" class="inline-block border border-outline-variant text-on-surface px-8 py-3 rounded-lg font-semibold hover:bg-surface-variant transition-colors text-sm cursor-pointer">
+        Submit Another Response
+      </button>
     </div>
 
     </div>
@@ -370,6 +370,15 @@
     success.classList.remove('hidden');
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
+
+  window.resetForm = function () {
+    form.reset();
+    document.getElementById('lv-state').value = 'Kerala';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined text-base">send</span> Submit Registration';
+    success.classList.add('hidden');
+    formWrap.classList.remove('hidden');
+  };
 
   function showError(msg) {
     errorEl.textContent = msg;
