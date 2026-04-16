@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>History Panel | Athirathram 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Malayalam:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-fixed-variant": "#793100",
+          "surface-dim": "#131313",
+          "tertiary": "#c9c6c0",
+          "surface-container-low": "#1c1b1b",
+          "outline": "#a78b7e",
+          "on-secondary": "#3c2f00",
+          "error": "#ffb4ab",
+          "on-primary": "#552000",
+          "primary": "#ffb692",
+          "tertiary-fixed": "#e5e2db",
+          "surface-bright": "#393939",
+          "secondary-fixed": "#ffe088",
+          "primary-container": "#ff7722",
+          "inverse-primary": "#9f4200",
+          "outline-variant": "#584237",
+          "on-background": "#e5e2e1",
+          "on-error": "#690005",
+          "primary-fixed": "#ffdbcb",
+          "inverse-on-surface": "#313030",
+          "surface-tint": "#ffb692",
+          "surface-variant": "#353535",
+          "on-surface-variant": "#e0c0b1",
+          "tertiary-container": "#a19f99",
+          "on-secondary-fixed-variant": "#574500",
+          "error-container": "#93000a",
+          "surface-container": "#20201f",
+          "surface": "#131313",
+          "on-error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#c9c6c0",
+          "on-secondary-fixed": "#241a00",
+          "on-tertiary-fixed": "#1c1c18",
+          "on-secondary-container": "#342800",
+          "secondary-container": "#af8d11",
+          "surface-container-lowest": "#0e0e0e",
+          "secondary-fixed-dim": "#e9c349",
+          "on-primary-container": "#5e2400",
+          "surface-container-high": "#2a2a2a",
+          "on-tertiary-container": "#373632",
+          "on-primary-fixed": "#341100",
+          "inverse-surface": "#e5e2e1",
+          "surface-container-highest": "#353535",
+          "secondary": "#e9c349",
+          "on-tertiary": "#31312c",
+          "on-surface": "#e5e2e1",
+          "primary-fixed-dim": "#ffb692",
+          "background": "#131313",
+          "on-tertiary-fixed-variant": "#474742"
+        },
+        fontFamily: {
+          "headline": ["Noto Serif"],
+          "body": ["Manrope"],
+          "label": ["Manrope"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  /* Language tab states */
+  .lang-tab {
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .lang-tab.active {
+    background: #ff7722;
+    border-color: #ff7722;
+    color: #341100;
+    font-weight: 700;
+  }
+  /* Prose content styles */
+  #content-area p {
+    margin-bottom: 1.4rem;
+    line-height: 1.9;
+    color: #e5e2e1;
+  }
+  #content-area h4 {
+    font-family: 'Noto Serif', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffb692;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  #content-area blockquote {
+    border-left: 2px solid rgba(255,119,34,0.4);
+    padding-left: 1.25rem;
+    margin: 1.25rem 0;
+    color: #e0c0b1;
+    font-style: italic;
+  }
+  #content-area em {
+    color: #e9c349;
+    font-style: italic;
+  }
+  #content-area ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 1.4rem;
+  }
+  #content-area ul li {
+    padding: 0.35rem 0 0.35rem 1.25rem;
+    position: relative;
+    color: #e5e2e1;
+    line-height: 1.7;
+  }
+  #content-area ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #ff7722;
+  }
+  .lang-ml { font-family: 'Noto Serif Malayalam', 'Noto Serif', serif; }
+  .lang-hi { font-family: 'Noto Serif Devanagari', 'Noto Serif', serif; }
+  .lang-en { font-family: 'Noto Serif', serif; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fade-up 0.5s cubic-bezier(0.23,1,0.32,1) both; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+
+<!-- Nav -->
+<header class="sticky top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)]">
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 md:py-5 max-w-screen-2xl mx-auto">
+  <a href="index.html" class="text-lg md:text-2xl font-serif font-bold text-[#E9C349] tracking-widest hover:opacity-80 transition-opacity">Athirathram 2026</a>
+  <div class="hidden md:flex gap-8 items-center font-serif text-lg tracking-tight">
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html">The Yajna</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#ritual-explorer">Schedule</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#location">Location</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="master.html">The Master</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="learn-veda.html">Learn Veda</a>
+    <a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1" href="history.html">History</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#brochure">Brochure</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="support.html">Support</a>
+  </div>
+  <a href="support.html" class="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-semibold hover:scale-105 transition-transform">Register/Donate</a>
+  <button id="menu-toggle" onclick="var m=document.getElementById('mobile-menu');m.classList.toggle('hidden');this.querySelector('.bar1').classList.toggle('rotate-45');this.querySelector('.bar1').classList.toggle('translate-y-2');this.querySelector('.bar2').classList.toggle('opacity-0');this.querySelector('.bar3').classList.toggle('-rotate-45');this.querySelector('.bar3').classList.toggle('-translate-y-2');" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+    <span class="bar1 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar2 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar3 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+  </button>
+</nav>
+<div id="mobile-menu" class="hidden md:hidden bg-[#1C1B1B] border-t border-[#E9C349]/10 px-6 py-6 flex flex-col gap-5 font-serif text-lg">
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html">The Yajna</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#ritual-explorer">Schedule</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#location">Location</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="master.html">The Master</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="learn-veda.html">Learn Veda</a>
+  <a class="text-[#FFB692] border-b border-[#E9C349]/30 pb-3" href="history.html">History</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#brochure">Brochure</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="support.html">Support</a>
+  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center mt-2">Register/Donate</a>
+</div>
+</header>
+
+<main>
+
+  <!-- Landing page — shown when no ?id param -->
+  <div id="landing-area" class="hidden">
+    <div class="max-w-4xl mx-auto px-6 pt-12 pb-24">
+
+      <!-- Header -->
+      <div class="mb-12">
+        <span class="font-label text-xs tracking-[0.35em] uppercase text-secondary block mb-4">History Exhibition · Athirathram 2026</span>
+        <h1 class="font-headline text-3xl md:text-5xl text-on-background leading-tight mb-4">Exploring the <span class="text-[#E9C349] italic">Story of Yajña</span></h1>
+        <p class="text-on-surface-variant text-base md:text-lg max-w-2xl leading-relaxed">Five panels placed at the Athirathram grounds that trace the living tradition of yāga — from Vedic scripture to world culture. Scan a panel's QR code or choose one below.</p>
+      </div>
+
+      <!-- Panel cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="panel-cards"></div>
+
+    </div>
+  </div>
+
+  <!-- Error state (invalid id) -->
+  <div id="error-state" class="hidden min-h-[60vh] flex items-center justify-center px-6 text-center">
+    <div>
+      <span class="material-symbols-outlined text-5xl text-outline mb-4 block">error</span>
+      <h2 class="font-headline text-2xl text-on-background mb-3">Panel Not Found</h2>
+      <p class="text-on-surface-variant mb-6">No history panel matches this URL.</p>
+      <a href="history.html" class="inline-block border border-outline-variant text-on-surface px-6 py-2 rounded font-semibold hover:bg-surface-variant transition-colors text-sm">Back to All Panels</a>
+    </div>
+  </div>
+
+  <!-- Panel content -->
+  <div id="panel-area" class="hidden">
+    <div class="max-w-3xl mx-auto px-6 pt-10 pb-24">
+
+      <!-- Top bar: panel label + site link -->
+      <div class="flex items-center gap-3 mb-8">
+        <span class="font-label text-xs tracking-[0.3em] uppercase text-secondary" id="panel-label">Panel 1 of 5</span>
+        <div class="h-px flex-1 bg-outline-variant/20"></div>
+        <span class="font-label text-xs text-on-surface-variant/50">ചരിത്ര പാനൽ</span>
+      </div>
+
+      <!-- Title -->
+      <h1 id="item-title" class="font-headline text-3xl md:text-4xl text-on-background mb-8 leading-snug fade-up"></h1>
+
+      <!-- Language tabs -->
+      <div class="flex gap-2 mb-10 flex-wrap">
+        <button class="lang-tab px-5 py-2 rounded-full text-sm border border-outline-variant/40 text-on-surface-variant" data-lang="ml">മലയാളം</button>
+        <button class="lang-tab px-5 py-2 rounded-full text-sm border border-outline-variant/40 text-on-surface-variant" data-lang="en">English</button>
+        <button class="lang-tab px-5 py-2 rounded-full text-sm border border-outline-variant/40 text-on-surface-variant" data-lang="hi">हिन्दी</button>
+      </div>
+
+      <!-- Content area -->
+      <div id="content-area" class="text-base md:text-lg fade-up"></div>
+
+      <!-- Prev / Next navigation -->
+      <div class="flex items-center justify-between mt-16 pt-8 border-t border-outline-variant/20">
+        <a id="prev-btn" href="#" class="hidden items-center gap-2 text-sm text-on-surface-variant hover:text-primary transition-colors group">
+          <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+          Previous Panel
+        </a>
+        <div class="flex-1"></div>
+        <a id="next-btn" href="#" class="hidden items-center gap-2 text-sm text-on-surface-variant hover:text-primary transition-colors group">
+          Next Panel
+          <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- All panels list -->
+      <div class="mt-12">
+        <p class="text-xs uppercase tracking-[0.3em] text-secondary mb-4">All Panels</p>
+        <div class="grid grid-cols-1 gap-2" id="all-panels-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#1C1B1B] w-full pt-12 md:pt-20 pb-12">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 text-center md:text-left">
+    <div>
+      <div class="text-xl font-headline text-[#FFB692] mb-6">Athirathram 2026</div>
+      <p class="font-body text-sm tracking-wide leading-relaxed text-[#E5E2E1]/60 mb-6">
+        Dedicated to the revival and preservation of ancient Vedic wisdom and the upliftment of humanity through sacred rituals.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h4 class="text-[#E9C349] font-semibold mb-2">Quick Links</h4>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="index.html">The Yajna</a>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="master.html">The Master</a>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="learn-veda.html">Learn Veda</a>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="support.html">Support & Donate</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h4 class="text-[#E9C349] font-semibold mb-2">Contact Us</h4>
+      <div class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 text-sm">
+        <span class="material-symbols-outlined text-sm">mail</span>info@kvrf.org
+      </div>
+      <div class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 text-sm">
+        <span class="material-symbols-outlined text-sm">location_on</span>Kerala, India
+      </div>
+      <a href="tel:+919745915151" class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm">
+        <span class="material-symbols-outlined text-sm text-[#FFB692]">call</span>+91 97459 15151
+      </a>
+      <a href="tel:+917907080682" class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm">
+        <span class="material-symbols-outlined text-sm text-[#FFB692]">call</span>+91 79070 80682
+      </a>
+    </div>
+  </div>
+  <div class="mt-10 md:mt-16 pt-8 border-t border-outline-variant/10 text-center">
+    <p class="font-body text-sm tracking-wide text-[#E5E2E1]/60">© 2026 Kasyapa Veda Research Foundation. All Rights Sacred.</p>
+  </div>
+</footer>
+
+<script>
+// ─── Content Data ────────────────────────────────────────────────────────────
+const ITEMS = {
+
+// ── Item 1: Agnicayana Vidya ──────────────────────────────────────────────────
+1: {
+  ml: `
+    <p>വേദങ്ങളിലെ പരമമായ അറിവിനെ ചര്‍ച്ച ചെയ്യുന്ന ഗ്രന്ഥങ്ങളാണല്ലോ ഉപനിഷത്തുക്കള്‍. പക്ഷേ പലപ്പോഴും ഉപനിഷത്തുക്കള്‍ യജ്ഞയാഗാദികള്‍ ഉള്‍പ്പെടുന്ന കര്‍മകാണ്ഡത്തെ തള്ളിക്കളയുന്നു എന്ന തെറ്റുധാരണ പലര്‍ക്കുമുണ്ട്. എന്നാല്‍ പല ഉപനിഷത്തുക്കളും വാസ്തവത്തില്‍ കര്‍മ്മകാണ്ഡത്തിന്റെ തുടര്‍ച്ചയായാണ് ഇരിക്കുന്നത്. ഉദാഹരണമായി ബൃഹദാരണ്യകോപനിഷത്ത് ഇരിക്കുന്നത് യാഗങ്ങളെക്കുറിച്ച് ചര്‍ച്ച ചെയ്യുന്ന ശതപഥബ്രാഹ്‌മണത്തിന്റെ അവസാന കാണ്ഡത്തിനുള്ളിലാണ്. മാത്രമല്ല, പല ഉപനിഷത്തുക്കളിലും പലപ്പോഴും യജ്ഞയാഗാദികളുടെ രഹസ്യാര്‍ഥങ്ങളെക്കുറിച്ചുള്ള ചര്‍ച്ച കടന്നുവരികയും ചെയ്യും.</p>
+    <p>അത്തരത്തിലുള്ള ഒരു ഭാഗമാണ് കഠോപനിഷത്തിലെ നചികേതസ്സിന്റെ കഥയിലുള്ളത്. നചികേതസ്സിന്റെ അച്ഛന്‍, വാജശ്രവസ്സ്, ദാനത്തിന് ഏറ്റവും പ്രാധാന്യമുള്ള വിശ്വജിത്ത് എന്ന മഹായാഗം നടത്തുന്നു. യാഗത്തില്‍ ദാനം ചെയ്യാന്‍ വാജശ്രവസ്സ് തിരഞ്ഞെടുത്തത്രയും ചാവാലി പശുക്കളെയാണ് എന്ന കാര്യം നചികേതസ്സ് കണ്ടു. ഇക്കാരണത്താല്‍ അച്ഛന്റെ യാഗം ഗുണമല്ല, ദോഷമാണ് വരുത്തിവെക്കുക എന്ന് തിരിച്ചറിഞ്ഞ നചികേതസ്സ് അച്ഛനോട് ആവര്‍ത്തിച്ചു ചോദിക്കും 'അച്ഛന്‍ എന്നെ ആര്‍ക്കാണ് ദാനം ചെയ്യുക?' എന്ന്. ക്ഷമകെട്ട് വാജശ്രവസ്സ് ദേഷ്യത്തോടെ പറയും, 'നിന്നെ ഞാന്‍ മൃത്യുവിന് കൊടുക്കും' എന്ന്.</p>
+    <p>അച്ഛന്റെ ആ ദാനമെങ്കിലും സത്യമാകട്ടെ എന്ന് കരുതി നചികേതസ്സ് സ്വയം യമപുരിയിലേക്ക് യാത്രയാകും. യമദേവന്‍ അപ്പോള്‍ യമപുരിയില്‍ ഉണ്ടായിരുന്നില്ല. മൂന്ന് രാത്രികള്‍ വിശപ്പും ദാഹവും ഉപേക്ഷിച്ച് നചികേതസ്സ് യമനെ കാത്തിരുന്നു. യമന്‍ തിരിച്ചെത്തിയപ്പോള്‍ മൂന്ന് രാത്രികള്‍ തന്നെ കാത്തിരുന്ന നചികേതസ്സിനെ കണ്ട് മനസ്സലിവ് തോന്നി മൂന്ന് വരങ്ങള്‍ ചോദിച്ചുകൊള്ളാന്‍ പറഞ്ഞു. നചികേതസ്സ് ചോദിച്ച ആദ്യ വരം, തിരിച്ചുചെല്ലുമ്പോള്‍ അച്ഛന്‍ എന്നെ ശാന്തമായി സ്വീകരിക്കണം എന്നതായിരുന്നു. രണ്ടാമത്തെ വരമാണ് ഭൂമിയിലെ എല്ലാ ദുഃഖങ്ങളില്‍നിന്നും വാര്‍ധക്യത്തില്‍നിന്നും മരണത്തില്‍നിന്നും മോചിതനാകാനുള്ള അഗ്‌നിവിദ്യ. അപ്പോഴാണ് യമദേവന്‍ അഗ്നിചയനത്തിന്റെ രഹസ്യം നചികേതസ്സിന് പറഞ്ഞുകൊടുക്കുന്നത്.</p>
+    <p>അതിരാത്ര സോമയാഗത്തില്‍ വരുന്ന പ്രധാനപ്പെട്ട ചടങ്ങാണ് അഗ്‌നിചയനം. നിശ്ചിത എണ്ണത്തിലും ആകൃതിയിലും അളവിലുമുള്ള ഇഷ്ടികകള്‍ മന്ത്രപൂര്‍വം അടുക്കിവെച്ചുകൊണ്ട് ഗരുഡന്‍, കൂര്‍മം, രഥചക്രം തുടങ്ങിയ ആകൃതികളിലുള്ള നിര്‍മിതികള്‍ ഉണ്ടാക്കുന്നതാണ് അഗ്‌നിചയനം. പക്ഷേ ഈ നിര്‍മിതികള്‍ക്കും അതിന്റെ അളവുകള്‍ക്കുമെല്ലാം ഉള്ളില്‍ നിഗൂഢമായ രഹസ്യങ്ങളുണ്ട്. ഇതാണ് നചികേതസ്സിന് യമദേവന്‍ പറഞ്ഞുകൊടുത്തത്. അതിരാത്ര ഭൂമിയില്‍ ഒരുക്കിയിട്ടുള്ള ''ശ്യേനന്റെ കഥ'' എന്ന എക്‌സിബിഷനില്‍ ഇതിലെ ചില രഹസ്യങ്ങളെക്കുറിച്ച് നിങ്ങള്‍ക്കായി അനാവരണം ചെയ്തിട്ടുണ്ട്.</p>
+  `,
+  en: `
+    <p>The Upanishads are texts that discuss the supreme knowledge contained in the Vedas. Yet many people hold the mistaken belief that the Upaniṣads reject the Karma Kāṇḍa — the domain of yajñas, yāgas, and rituals. In reality, however, many Upaniṣads exist as a direct continuation of the Karma Kāṇḍa. For example, the Bṛhadāraṇyaka Upaniṣad is situated within the final kāṇḍa of the Śatapatha Brāhmaṇa, which itself discusses yāgas at length. Moreover, discussions on the hidden meanings of yajñas and yāgas frequently appear within many Upaniṣads.</p>
+    <p>One such passage is found in the story of Naciketas in the Kaṭha Upaniṣad. Naciketas's father, Vājaśravas, performs the grand Viśvajit yāga, a mahāyāga in which charitable giving holds the highest importance. Naciketas noticed that the cows his father had chosen to give away as gifts during the yāga were all old and decrepit. Realising that his father's yāga would bring harm rather than merit, Naciketas repeatedly asked his father: "To whom will you give me as your gift?" Losing patience, Vājaśravas replied in anger: "I will give you to Death."</p>
+    <p>Wanting at least that gift of his father to prove true, Naciketas set off on his own to the realm of Yama. Yamadeva was not present at the time. For three nights, Naciketas waited, setting aside hunger and thirst. When Yama returned and saw Naciketas who had waited three nights for him, he was moved with compassion and asked him to choose three boons. The first boon Naciketas asked for was that his father would receive him peacefully upon his return. The second boon was the Agni Vidyā — the knowledge that liberates one from all the sorrows of the world, from old age, and from death. It is at this point that Yamadeva reveals to Naciketas the secret of Agnicayana.</p>
+    <p>Agnicayana is one of the most important ceremonies that forms part of the Atirātra Somayāga. It involves arranging bricks of specific number, shape, and measurement while chanting mantras, to construct forms such as the Garuḍa (eagle), the Kūrma (tortoise), and the Rathacakra (chariot wheel). But within these constructions and within their precise measurements lie profound and hidden secrets. This is what Yamadeva revealed to Naciketas. Some of these secrets have been unveiled for you in the exhibition titled "The Story of the Śyena" set up at the Athirathra grounds.</p>
+  `,
+  hi: `
+    <p>उपनिषद वेदों के उस भाग को कहते हैं जहाँ परम ज्ञान की चर्चा होती है। प्रायः लोगों में यह भ्रांति रहती है कि उपनिषद यज्ञ और यागादि से संबंधित 'कर्मकांड' को पूरी तरह नकार देते हैं। किंतु वास्तविकता यह है कि अनेक उपनिषद वास्तव में कर्मकांड के ही विस्तार या निरंतरता के रूप में विद्यमान हैं। उदाहरण के तौर पर, 'बृहदारण्यक उपनिषद' उस 'शतपथ ब्राह्मण' के अंतिम कांड का भाग है, जो विस्तृत रूप से यज्ञों की व्याख्या करता है। इतना ही नहीं, कई उपनिषदों में यज्ञ और अनुष्ठानों के गूढ़ एवं रहस्यमयी अर्थों पर भी गहन चर्चा प्राप्त होती है।</p>
+    <p>'कठोपनिषद' में वर्णित नचिकेता की कथा में भी हमें ऐसा ही एक प्रसंग मिलता है। नचिकेता के पिता, वाजश्रवा ने 'विश्वजित' नामक एक महायज्ञ का आयोजन किया, जिसमें दान का अत्यंत महत्व होता है। नचिकेता ने देखा कि दान के लिए उनके पिता ने अत्यंत दुर्बल और वृद्ध गायों का चयन किया है। यह देखकर नचिकेता को बोध हुआ कि ऐसे दान से पिता को पुण्य के स्थान पर दोष प्राप्त होगा। अतः उन्होंने अपने पिता से बार-बार पूछा — "पिताजी, आप मुझे किसे दान करेंगे?" अंततः क्रोधित होकर वाजश्रवा ने कहा — "मैं तुझे मृत्यु (यमराज) को दान करता हूँ।"</p>
+    <p>अपने पिता के वचनों को सत्य सिद्ध करने के लिए नचिकेता स्वयं यमपुरी की ओर प्रस्थान कर गए। उस समय यमदेव वहाँ उपस्थित नहीं थे। नचिकेता ने तीन रातों तक बिना अन्न-जल के यमराज की प्रतीक्षा की। लौटने पर यमदेव ने बालक के धैर्य से प्रसन्न होकर उन्हें तीन वरदान माँगने को कहा। नचिकेता ने प्रथम वर के रूप में यह माँगा कि जब वे वापस लौटें, तो उनके पिता उन्हें शांत मन से स्वीकार करें। दूसरे वरदान के रूप में उन्होंने वह 'अग्नि विद्या' माँगी, जो पृथ्वी के समस्त दुखों, वृद्धावस्था और मृत्यु के भय से मुक्त करने वाली हो। तब यमदेव ने नचिकेता को 'अग्निचयन' का रहस्य समझाया।</p>
+    <p>'अतिरात्र सोमयाग' नामक अनुष्ठान में अग्निचयन एक प्रमुख प्रक्रिया है। इसमें एक निश्चित संख्या, आकृति और माप की ईंटों को मंत्रोच्चार के साथ क्रमबद्ध रूप से रखा जाता है। इससे गरुड़ (शेन), कूर्म (कछुआ) और रथ के पहिये जैसी आकृतियों वाली वेदियाँ बनाई जाती हैं। इन आकृतियों और इनके मापों के भीतर अत्यंत गूढ़ आध्यात्मिक रहस्य छिपे होते हैं। यही वह ज्ञान था जो यमदेव ने नचिकेता को प्रदान किया था। 'अतिरात्र' की भूमि पर आयोजित "शेन की कथा" नामक प्रदर्शनी में इन्हीं रहस्यों के कुछ अंश आपके सम्मुख अनावृत किए गए हैं।</p>
+  `
+},
+
+// ── Item 2: Sri Rama and Somayagas ───────────────────────────────────────────
+2: {
+  ml: `
+    <p>യാഗസംസ്‌കൃതിക്ക്, വിശേഷിച്ചും സോമയാഗങ്ങള്‍ക്ക് എത്രത്തോളം പഴക്കമുണ്ട് എന്ന് ചോദിച്ചാല്‍, ത്രേതായുഗത്തോളം എന്നാണ് ഉത്തരം. അതിന്റെ ഏറ്റവും നല്ല തെളിവായി നമുക്ക് മുന്നിലുള്ളത് സാക്ഷാല്‍ ശ്രീരാമന്‍ തന്നെയാണ്.</p>
+    <p>പുത്രകാമേഷ്ടിയിലൂടെ പിറന്ന രാമന്റെ അയോധ്യയില്‍ യജ്ഞസംസ്‌കൃതി കളിയാടിയിരുന്നു. അഗ്‌നിയില്‍ ഹവിസ്സര്‍പ്പിക്കാത്ത ആരുംതന്നെ അയോധ്യയില്‍ ഉണ്ടായിരുന്നില്ല എന്നാണ് വാല്മീകി മഹര്‍ഷി വര്‍ണിച്ചിരിക്കുന്നത്. <em>'നാനാഹിതാഗ്‌നിര്‍ നായജ്വാ'</em> എന്നാണ് ആ പ്രസ്താവം. (വാല്‍മീകിരാമായണം ബാലകാണ്ഡം 6.2)</p>
+    <p>ചെറുപ്പകാലത്തുതന്നെ രാമ-ലക്ഷ്മണന്മാര്‍ അഗ്നിഹോത്രം ചെയ്തതായുള്ള വര്‍ണനകള്‍ ബാലകാണ്ഡത്തിലുണ്ട്. പിന്നീട് സീതയോടൊത്ത് അയോധ്യയില്‍വെച്ചും വനവാസകാലത്തും ശ്രീരാമന്‍ അഗ്‌നിഹോത്രം ചെയ്യുന്നതിന്റെ വര്‍ണനകള്‍ വാല്മീകിരാമായണത്തില്‍ സര്‍വത്ര കാണാം. വനത്തില്‍ ശ്രീരാമന്റെ പര്‍ണശാലയുടെ വടക്കുകിഴക്കുഭാഗത്തുള്ള വിശാലവും മനോഹരവും അഗ്നിയോടുകൂടി ജാജ്ജ്വല്യമാനവുമായ യജ്ഞവേദിയെക്കുറിച്ച് രാമായണത്തില്‍ വര്‍ണനയുണ്ട്. (വാല്‍മീകിരാമായണം ബാലകാണ്ഡം 99.24)</p>
+    <p>ദശരഥന്റെ മരണവാര്‍ത്ത അറിയിക്കാനും ശ്രീരാമനെ അയോധ്യയിലേക്ക് തിരിച്ചുവിളിക്കാനുമായി വനത്തില്‍ എത്തിച്ചേര്‍ന്ന ഭരതന്‍ ശ്രീരാമന്റെ വാസസ്ഥാനത്തെ കണ്ടെത്തുന്നതുതന്നെ ഈ യജ്ഞവേദിയില്‍നിന്നും ഉയര്‍ന്നുപൊങ്ങിയ തിങ്ങിനിറഞ്ഞ ഹോമധൂമത്തെ കണ്ടുകൊണ്ടാണ്. (വാല്‍മീകിരാമായണം ബാലകാണ്ഡം 99.12)</p>
+    <p>തുടര്‍ന്ന് ഭരതനെ കണ്ടപ്പോള്‍ ശ്രീരാമന്‍ അച്ഛനായ ദശരഥന്റെ വിശേഷങ്ങള്‍ ചോദിച്ചത് ഇങ്ങനെയാണ്:</p>
+    <blockquote>''ഭരതാ, രാജസൂയം, അശ്വമേധം തുടങ്ങിയ മഹായാഗങ്ങളെ ചെയ്തവനും ധര്‍മിഷ്ഠനും സത്യസന്ധനുമായ ദശരഥമഹാരാജാവിന് ക്ഷേമംതന്നെയല്ലേ?'' (വാല്‍മീകിരാമായണം ബാലകാണ്ഡം 100.8)</blockquote>
+    <p>ശ്രീരാമന്റെ മനസ്സില്‍ യജ്ഞസംസ്‌കാരത്തിന് കല്പിക്കപ്പെട്ടിട്ടുള്ള മഹത്വം എത്രത്തോളമുണ്ടെന്ന് ഈ വാക്കുകളില്‍നിന്നും മനസ്സിലാക്കാം. തുടര്‍ന്ന് ഭരതനോടായി രാമന്‍ ഇങ്ങനെയും ചോദിക്കുന്നുണ്ട്:</p>
+    <blockquote>''ശ്രൗതയാഗങ്ങളില്‍ നിപുണനും ശാസ്ത്രവിധിയെ അറിയുന്നവനുമായ പുരോഹിതന്‍, വിശേഷാവസരങ്ങളില്‍ ചെയ്യേണ്ടതുമായ യജ്ഞങ്ങളെക്കുറിച്ച് വേണ്ടകാലങ്ങളില്‍ നിന്നോട് ബോധിപ്പിക്കുന്നില്ലേ?'' (വാല്‍മീകിരാമായണം ബാലകാണ്ഡം 100.12)</blockquote>
+    <p>സോമയാഗങ്ങള്‍ യഥാസമയങ്ങളില്‍ ചെയ്യേണ്ടതിന്റെ പ്രാധാന്യത്തെക്കുറിച്ച് ശ്രീരാമന്‍ ഭരതനെ ഓര്‍മപ്പെടുത്തുകയാണിവിടെ.</p>
+    <p>രാമന്‍ സ്വയം അഗ്നിഷ്ടോമം തുടങ്ങിയ സോമയാഗങ്ങള്‍ ചെയ്യിക്കുന്നതില്‍ തല്പരനായിരുന്ന ആളായിരുന്നു എന്ന് അശോകവനിയില്‍വെച്ച് സീത ഓര്‍ക്കുന്നതും യുദ്ധകാണ്ഡത്തിലും നമുക്ക് വായിക്കാന്‍ സാധിക്കും. <em>'അഗ്നിഷ്ടോമാദിഭിഃ യജ്ഞൈഃ ഇഷ്ടവാന്‍ ആപ്തദക്ഷിണൈഃ'</em> എന്നാണ് സീതയുടെ ആ വാക്കുകള്‍. (വാല്‍മീകിരാമായണം യുദ്ധകാണ്ഡം 32.34)</p>
+    <p>ഇപ്പറഞ്ഞതില്‍നിന്നെല്ലാം രണ്ട് കാര്യങ്ങള്‍ നമുക്ക് മനസ്സിലാകും. ഒന്ന് — സോമയാഗങ്ങള്‍ക്ക് ത്രേതായുഗത്തോളം പഴക്കമുണ്ട്. അതേപോലെ ശ്രീരാമന് സോമയാഗങ്ങളോടുള്ള പ്രിയം എത്രത്തോളമുണ്ടായിരുന്നു എന്നതാണ് രണ്ടാമത്തെ കാര്യം.</p>
+  `,
+  en: `
+    <p>If asked how ancient the tradition of yāgas is — especially Somayāgas — the answer is: as far back as the Tretā Yuga. The best evidence before us for this is none other than Śrī Rāma himself.</p>
+    <p>In Ayodhyā, where Rāma was born through the Putrakāmeṣṭi yāga, the culture of yajña flourished freely. Vālmīki Maharṣi describes that there was not a single person in Ayodhyā who had not offered havis into Agni. The statement is: <em>"nānāhitāgnir nāyajvā"</em> (Vālmīki Rāmāyaṇa, Bālakāṇḍa 6.2)</p>
+    <p>There are descriptions in the Bālakāṇḍa of Rāma and Lakṣmaṇa performing Agnihotra even from a young age. Descriptions of Śrī Rāma performing Agnihotra — later in Ayodhyā alongside Sītā, and also during the forest exile — are found throughout the Vālmīki Rāmāyaṇa. The Rāmāyaṇa contains a description of the grand, beautiful, and blazing yajñavedi in the northeast direction of Śrī Rāma's forest hermitage. (Vālmīki Rāmāyaṇa, Bālakāṇḍa 99.24)</p>
+    <p>When Bharata arrived in the forest to inform Śrī Rāma of Daśaratha's death and call him back to Ayodhyā, it was precisely the dense column of smoke rising from this yajñavedi that led him to Rāma's dwelling. (Vālmīki Rāmāyaṇa, Bālakāṇḍa 99.12)</p>
+    <p>When Rāma then met Bharata, he enquired about his father Daśaratha in these words:</p>
+    <blockquote>"Bharata, is the great King Daśaratha — he who performed grand yāgas such as Rājasūya and Aśvamedha, who is dhārmic and truthful — is he well?" (Vālmīki Rāmāyaṇa, Bālakāṇḍa 100.8)</blockquote>
+    <p>From these words we can understand how great a place yajña culture held in Śrī Rāma's heart. Rāma then further asks Bharata:</p>
+    <blockquote><em>"Does the purohita, who is skilled in Śrauta yāgas and knows the injunctions of śāstra, inform you in due time about the yajñas to be performed on special occasions?"</em> (Vālmīki Rāmāyaṇa, Bālakāṇḍa 100.12)</blockquote>
+    <p>Here Śrī Rāma is reminding Bharata of the importance of performing Somayāgas at their proper times.</p>
+    <p>That Rāma was himself keenly interested in having Somayāgas such as Agniṣṭoma performed can also be read in the Yuddha Kāṇḍa, where Sītā recalls this while in the Aśoka grove. Her words are: <em>"agniṣṭomādibhiḥ yajñaiḥ iṣṭavān āptadakṣiṇaiḥ"</em> (Vālmīki Rāmāyaṇa, Yuddha Kāṇḍa 32.34)</p>
+    <p>From all of the above, two things become clear to us. First, Somayāgas are as ancient as the Tretā Yuga itself. Second — how deep Śrī Rāma's love for Somayāgas truly was.</p>
+  `,
+  hi: `
+    <p>यदि यह प्रश्न किया जाए कि यज्ञ संस्कृति, विशेष रूप से सोमयाग, कितने प्राचीन हैं, तो इसका उत्तर है — त्रेतायुग जितने प्राचीन। इसका सबसे उत्तम प्रमाण स्वयं साक्षात् श्रीराम हैं।</p>
+    <p>पुत्रकामेष्टि यज्ञ के फलस्वरूप जन्मे श्रीराम की अयोध्या में यज्ञ संस्कृति पूर्णतः व्याप्त थी। महर्षि वाल्मीकि ने वर्णन किया है कि अयोध्या में ऐसा कोई व्यक्ति नहीं था जिसने अग्नि में आहुति न दी हो। उनका कथन है — <em>'नानाहिताग्निर् नायज्वा'</em> (वाल्मीकि रामायण, बालकांड 6.2)।</p>
+    <p>बालकांड में वर्णन मिलता है कि राम और लक्ष्मण ने बाल्यकाल में ही अग्निहोत्र संपन्न किया था। इसके पश्चात, सीता जी के साथ अयोध्या में रहते हुए और वनवास काल के दौरान भी श्रीराम द्वारा निरंतर अग्निहोत्र करने के वर्णन वाल्मीकि रामायण में सर्वत्र मिलते हैं। रामायण में श्रीराम की पर्णशाला के उत्तर-पूर्व दिशा में स्थित एक विशाल, सुंदर और प्रज्वलित यज्ञवेदी का वर्णन है। (वाल्मीकि रामायण, बालकांड 99.24)</p>
+    <p>जब भरत, राजा दशरथ की मृत्यु का समाचार देने और श्रीराम को अयोध्या वापस बुलाने के लिए वन पहुँचे, तब उन्होंने श्रीराम के निवास स्थान को उसी यज्ञवेदी से उठते हुए सघन होम-धूम को देखकर ही पहचाना। (वाल्मीकि रामायण, बालकांड 99.12)</p>
+    <p>तदुपरांत, भरत से मिलने पर श्रीराम ने अपने पिता दशरथ का कुशल-मंगल इस प्रकार पूछा:</p>
+    <blockquote>"हे भरत! राजसूय और अश्वमेध जैसे महायज्ञों को संपन्न करने वाले, धर्मनिष्ठ और सत्यवादी महाराज दशरथ कुशल तो हैं न?" (वाल्मीकि रामायण, बालकांड 100.8)</blockquote>
+    <p>इन शब्दों से स्पष्ट होता है कि श्रीराम के मन में यज्ञ संस्कृति के प्रति कितना महान आदर था। आगे वे भरत से यह भी पूछते हैं:</p>
+    <blockquote>"क्या श्रौत यज्ञों में निपुण और शास्त्र विधि के ज्ञाता पुरोहित, विशेष अवसरों पर किए जाने वाले यज्ञों के उचित समय के बारे में तुम्हें अवगत नहीं कराते?" (वाल्मीकि रामायण, बालकांड 100.12)</blockquote>
+    <p>यहाँ श्रीराम, भरत को समय-समय पर सोमयागों के अनुष्ठान के महत्व का स्मरण करा रहे हैं।</p>
+    <p>युद्धकांड में भी उल्लेख है कि अशोक वाटिका में सीता जी स्मरण करती हैं कि श्रीराम स्वयं अग्निष्टोम जैसे सोमयागों को संपन्न कराने में अत्यंत रुचि रखते थे। सीता जी के शब्द हैं — <em>"अग्निष्टोमादिभिः यज्ञैः इष्टवान् आप्तदक्षिणैः"</em> (वाल्मीकि रामायण, युद्धकांड 32.34)।</p>
+    <p>इन सभी प्रमाणों से दो बातें स्पष्ट होती हैं: पहली यह कि सोमयागों की परंपरा त्रेतायुग जितनी पुरातन है, और दूसरी यह कि श्रीराम का सोमयागों के प्रति अगाध प्रेम और निष्ठा थी।</p>
+  `
+},
+
+// ── Item 3: Sri Krishna — Protector of Yagas ─────────────────────────────────
+3: {
+  ml: `
+    <p>ശ്രീകൃഷ്ണന്‍ ഒരു യാഗനിരാസകന്‍ ആണെന്ന് പലരും അഭിപ്രായപ്പെട്ടു കാണാറുണ്ട്. പലപ്പോഴും ശ്രീകൃഷ്ണന്റെ വാക്കുകളെ തെറ്റിദ്ധരിച്ച് ഇല്ലാത്തതിനെ അനുമാനിച്ചാണ് ഇത്തരം നിഗമനങ്ങളിലേക്ക് ആളുകള്‍ എത്തിച്ചേരുന്നത്. നമുക്ക് മഹാഭാരതത്തില്‍നിന്നുള്ള മൂന്ന് ഉദാഹരണങ്ങള്‍ എടുത്തുകൊണ്ട് ഈ വിഷയത്തെക്കുറിച്ച് ചിന്തിക്കാം.</p>
+    <h4>ഒന്നാമത്തെ സന്ദര്‍ഭം:</h4>
+    <p>യുധിഷ്ഠിരന്‍ രാജസൂയയാഗം ചെയ്യാനുള്ള ആഗ്രഹം ശ്രീകൃഷ്ണനോട് പ്രകടിപ്പിക്കുന്ന സന്ദര്‍ഭമുണ്ട് മഹാഭാരതത്തില്‍. അപ്പോള്‍ ശ്രീകൃഷ്ണന്‍ ഈ ആഗ്രഹത്തെ പരിപൂര്‍ണമായും പിന്തുണയ്ക്കുകയും യാഗത്തിന്റെ രക്ഷാധികാരം സ്വയം ഏറ്റെടുക്കുകയും ചെയ്യുന്നുണ്ട്. എന്നാല്‍ ജരാസന്ധനെ വധിച്ചാലേ യാഗം പൂര്‍ത്തിയാക്കാന്‍ കഴിയൂ എന്ന കാര്യം ശ്രീകൃഷ്ണന്‍ യുധിഷ്ഠിരനെ ധരിപ്പിക്കുന്നു. ജരാസന്ധവധത്തിനുശേഷം രാജസൂയയാഗം ആരംഭിച്ചു. അപ്പോഴാണ് ശ്രീകൃഷ്ണനാണ് യജ്ഞത്തില്‍ ഏറ്റവും പൂജനീയന്‍ എന്ന് ഭീഷ്മര്‍ പറയുന്നത്. <em>'വാര്‍ഷ്‌ണേയം മന്യതേ കൃഷ്ണം പൂജനീയതമം'</em> എന്നാണ് ആ വാക്കുകള്‍. ഈ അവസരത്തില്‍ ഭീഷ്മര്‍ ശ്രീകൃഷ്ണനെ ഋത്വിക്ക് എന്ന് വിളിക്കുന്നുണ്ട്.</p>
+    <p>ശ്രൗതയാഗങ്ങളില്‍ പ്രധാനമായും നാല് ഋത്വിക്കുകളാണ് ഉണ്ടാകുക — ഋഗ്വേദത്തെ പ്രതിനിധാനം ചെയ്യുന്ന ഹോതാവ്, യജുര്‍വേദത്തെ പ്രതിനിധാനം ചെയ്യുന്ന അധ്വര്യു, സാമവേദവുമായി ബന്ധപ്പെട്ട ഉദ്ഗാതാവ്, അഥര്‍വവേദത്തെ പ്രതിനിധാനം ചെയ്യുന്ന ബ്രഹ്‌മന്‍. യാഗത്തിന്റെ മേലാളായി നിന്നുകൊണ്ട് ക്രിയകളില്‍ വരുന്ന ലോപങ്ങള്‍ക്ക് പ്രായശ്ചിത്തം വിധിക്കേണ്ടതും യാഗത്തിന്റെ ആധ്യാത്മികതത്ത്വം വിശദീകരിച്ചുകൊടുക്കേണ്ടതും ബ്രഹ്‌മന്‍ എന്ന ഋത്വിക്കിന്റെ ജോലിയാണ്. ഏപ്രില്‍ 17 മുതല്‍ 26 വരെ കോഴിക്കോട് കക്കോടിയിലെ വേദമഹാമന്ദിരത്തില്‍ നടക്കുന്ന അതിരാത്ര യാഗത്തില്‍ വന്നാല്‍ ഈ ഋത്വിക്കുകളും അവര്‍ ചെയ്യുന്ന കാര്യങ്ങളും നിങ്ങള്‍ക്ക് നേരില്‍ കാണാന്‍ സാധിക്കുന്നതാണ്.</p>
+    <p>ഇവിടെ നാല് ഋത്വിക്കുകളില്‍വെച്ച് ബ്രഹ്‌മന്‍ എന്ന ഋത്വിക്കായാണ് ഭീഷ്മര്‍ ശ്രീകൃഷ്ണനെ നിര്‍ദേശിക്കുന്നത്. ആ അവസരത്തില്‍, യാഗത്തില്‍ അര്‍ഘ്യം സ്വീകരിക്കാന്‍ യോഗ്യന്‍ ശ്രീകൃഷ്ണനാണെന്ന് ഏവരും അഭിപ്രായപ്പെടുകയും ശ്രീകൃഷ്ണന്‍ ആ അഭിപ്രായത്തെ സ്വീകരിക്കുകയും ചെയ്യുന്നുണ്ട്. പക്ഷേ ശിശുപാലന്‍ അതിനെ എതിര്‍ക്കുകൊണ്ട് ശ്രീകൃഷ്ണനെ അപമാനിക്കാന്‍ ശ്രമിച്ചു. അങ്ങനെയാണ് ശിശുപാലവധം നടക്കുന്നത്.</p>
+    <p>ഇവിടെ ശ്രദ്ധിക്കേണ്ട കാര്യമെന്തെന്നാല്‍, അഥര്‍വവേദം മാത്രമല്ല, നാല് വേദങ്ങളിലും ശ്രൗതയാഗക്രിയകളിലും ഒരേപോല പാണ്ഡിത്യമുള്ളവര്‍ക്കാണ് ബ്രഹ്‌മസ്ഥാനത്തിരുന്ന് യാഗത്തെ നയിക്കാന്‍ സാധിക്കുക. വേദവ്യാസനെപ്പോലുള്ള മഹര്‍ഷിമാര്‍ ഉണ്ടെന്നിരിക്കെ, അപ്പോള്‍ ബ്രഹ്‌മസ്ഥാനത്ത് ഇരുന്നത് ശ്രീകൃഷ്ണനാണ്.</p>
+    <h4>സന്ദര്‍ഭം രണ്ട് — മഹാഭാരതം ഉദ്യോഗപര്‍വം:</h4>
+    <p>ഹസ്തിനപുരിയിലേക്ക് ദൂതിനായി ചെന്ന ശ്രീകൃഷ്ണന്‍ കൗരവസഭയിലേക്ക് പുറപ്പെടുന്നതിനുമുന്‍പ് സ്വയം ആചമനാദികളെല്ലാം ചെയ്ത്, മന്ത്രം ചൊല്ലി, അഗ്നിഹോത്രയജ്ഞം ചെയ്യുന്നു. <em>(കൃതോദകാനുജപ്യഃ സ ഹുതാഗ്‌നിഃ സമലങ്കൃതഃ — ഉദ്യോഗപര്‍വം 83.6)</em> ശ്രീകൃഷ്ണന്‍ സ്വയം അഗ്‌നിയില്‍ ഹവിസ്സര്‍പ്പിച്ച് യജ്ഞം ചെയ്തതായി മഹാഭാരതത്തിലുണ്ട്.</p>
+    <h4>സന്ദര്‍ഭം മൂന്ന് — മഹാഭാരതം ആശ്വമേധികപര്‍വം:</h4>
+    <p>കുരുക്ഷേത്ര യുദ്ധാനന്തരം വിഷാദത്തിലാണ്ടിരിക്കുന്ന യുധിഷ്ഠിരനെ ശ്രീകൃഷ്ണന്‍ ഉപദേശിക്കുന്നത് ഇങ്ങനെയാണ്:</p>
+    <blockquote>''ഹേ ജനാധിപാ, അങ്ങയുടെ അത്യന്തം ശോകത്തിലാണ്ടിരിക്കുന്ന മനസ്സ്, പൂര്‍വപിതാക്കന്മാരെപ്പോലും സന്താപത്തിലാഴ്ത്തുന്നു. അതിനാല്‍ ഈ ശോകത്തെ പരിത്യജിച്ച് ദക്ഷിണായുക്തമായ വിവിധ യജ്ഞങ്ങളില്‍ ദേവതകള്‍ക്കായിക്കൊണ്ട് യജിച്ചാലും.'' (ആശ്വ.പര്‍വം. 2.2–3)</blockquote>
+    <p>''വാജിമേധം — അതായത് അശ്വമേധയാഗം — അതേപോലെ മറ്റ് ദക്ഷിണായജ്ഞങ്ങളും ചെയ്യൂ'' എന്നും ശ്രീകൃഷ്ണന്‍ ഉപദേശിക്കുന്നത് ഇവിടെ വായിക്കാം. ചെയ്യേണ്ടുന്ന മറ്റ് ദക്ഷിണാ യജ്ഞങ്ങളെ മഹര്‍ഷി വ്യാസന്‍ യുധിഷ്ഠിരന് വിശദീകരിച്ചുകൊടുക്കുമുണ്ട് — <em>''രാജസൂയ-അശ്വമേധൗ ച സര്‍വമേധം ച ഭാരത, നരമേധം ച നൃപതേ ത്വമാഹര യുധിഷ്ഠിര.''</em></p>
+    <p>ശ്രീകൃഷ്ണന്‍ യാഗനിരാസകനല്ല എന്ന് മാത്രമല്ല, യാഗത്തില്‍ ഋത്വിക്കായി ഇരിക്കുകയും സ്വയം ഹോമം ചെയ്യുകയും മറ്റുള്ളവരെ യാഗങ്ങള്‍ക്കായി പ്രേരിപ്പിക്കുകയും ചെയ്തിരുന്ന വ്യക്തിയായിരുന്നു എന്നാണ് നമുക്ക് മഹാഭാരതത്തില്‍നിന്നും മനസ്സിലാകുന്നത്.</p>
+  `,
+  en: `
+    <p>Many people are of the opinion that Śrī Kṛṣṇa was opposed to yāgas. People arrive at such conclusions mostly by misinterpreting Śrī Kṛṣṇa's words and inferring things that are not actually there. Let us take three examples from the Mahābhārata and reflect on this subject.</p>
+    <h4>First instance:</h4>
+    <p>There is a moment in the Mahābhārata where Yudhiṣṭhira expresses to Śrī Kṛṣṇa his desire to perform the Rājasūya yāga. Śrī Kṛṣṇa fully supports this wish and personally takes upon himself the responsibility of protecting the yāga. He informs Yudhiṣṭhira that the yāga can only be completed after Jarāsandha is slain. After the slaying of Jarāsandha, the Rājasūya yāga commenced. It is at this point that Bhīṣma declares Kṛṣṇa to be the worthiest of honour at the yajña — <em>"vārṣṇeyaṃ manyate kṛṣṇaṃ pūjanīyatamam."</em> On this occasion, Bhīṣma also addresses Śrī Kṛṣṇa as Ṛitvik.</p>
+    <p>In Śrauta yāgas, there are principally four Ṛitviks: the Hotā (Rigveda), the Adhvaryu (Yajurveda), the Udgātā (Sāmaveda), and the Brahman (Atharvaveda). The Brahman Ṛitvik oversees the entire yāga, prescribes expiations for any lapses in the rituals, and explains the spiritual principles of the yāga. If you attend the Athirathra yāga being held at the Veda Mahāmandira in Kakkodi, Kozhikode, from April 17 to 26, you will be able to see these Ṛitviks and their functions in person.</p>
+    <p>Among the four Ṛitviks, it is specifically for the role of Brahman that Bhīṣma nominates Śrī Kṛṣṇa. Everyone agrees that Śrī Kṛṣṇa is the one worthy of receiving the arghya at the yāga, and Kṛṣṇa accepts this honour. But Śiśupāla opposed it and attempted to insult Śrī Kṛṣṇa — and that is how the slaying of Śiśupāla came about.</p>
+    <p>What must be noted is that only someone with equal mastery over all four Vedas — not merely the Atharvaveda — as well as over Śrauta ritual practice, can preside over a yāga from the Brahman's seat. Even though great sages like Vedavyāsa were present, it was Śrī Kṛṣṇa who sat in the Brahman's seat on that occasion.</p>
+    <h4>Second instance — Mahābhārata, Udyoga Parva:</h4>
+    <p>When Śrī Kṛṣṇa went to Hāstinapura as an emissary, before departing for the Kaurava assembly, he himself performed Āchamana and other preliminary rites, chanted mantras, and performed the Agnihotra yajña. The verse reads: <em>"kṛtodakānujapyaḥ sa hutāgniḥ samalaṃkṛtaḥ"</em> (Udyoga Parva 83.6). The Mahābhārata thus records that Śrī Kṛṣṇa himself offered havis into the sacred fire and performed the Agnihotra yajña.</p>
+    <h4>Third instance — Mahābhārata, Āśvamedhika Parva:</h4>
+    <p>After the Kurukṣetra war, Yudhiṣṭhira was sunk in grief. Śrī Kṛṣṇa counsels him thus:</p>
+    <blockquote>"O lord of the people, your mind, deeply steeped in sorrow, is casting your ancestors too into distress. Therefore, abandon this grief and worship the gods through various yajñas accompanied by proper Dakṣiṇā." (Āśvamedha Parva 2.2–3)</blockquote>
+    <p>Here Śrī Kṛṣṇa advises Yudhiṣṭhira to perform the Vājimedhā (the Aśvamedha yāga) as well as other Dakṣiṇā yajñas. Maharṣi Vyāsa further elaborates which Dakṣiṇā yajñas are to be performed. The verse is: <em>"rājasūya-aśvamedho ca sarvamadhaṃ ca bhārata, naramedhāṃ ca nṛpate tvamāhara Yudhiṣṭhira."</em></p>
+    <p>What we understand from the Mahābhārata is not merely that Śrī Kṛṣṇa was not opposed to yāgas — but that he was someone who sat as Ṛitvik in a yāga, personally performed homa, and actively encouraged others to undertake yāgas.</p>
+  `,
+  hi: `
+    <p>बहुत से लोग यह मत रखते हैं कि श्रीकृष्ण यज्ञों के विरोधी थे। अधिकतर ऐसे निष्कर्ष श्रीकृष्ण के वचनों को गलत समझकर और जो है ही नहीं उसका अनुमान लगाकर निकाले जाते हैं। आइए महाभारत से तीन उदाहरण लेकर इस विषय पर विचार करें।</p>
+    <h4>पहला प्रसंग:</h4>
+    <p>महाभारत में एक ऐसा प्रसंग है जहाँ युधिष्ठिर श्रीकृष्ण के समक्ष राजसूय यज्ञ करने की अपनी इच्छा व्यक्त करते हैं। श्रीकृष्ण इस इच्छा का पूर्ण समर्थन करते हैं और स्वयं यज्ञ की रक्षा का दायित्व ग्रहण करते हैं। किन्तु कृष्ण युधिष्ठिर को बताते हैं कि जरासंध के वध के बिना यज्ञ पूर्ण नहीं हो सकता। जरासंध-वध के पश्चात राजसूय यज्ञ आरम्भ हुआ। तभी भीष्म यह घोषणा करते हैं कि कृष्ण ही यज्ञ में सर्वाधिक पूजनीय हैं — <em>"वार्ष्णेयं मन्यते कृष्णं पूजनीयतमम्।"</em> इसी अवसर पर भीष्म श्रीकृष्ण को ऋत्विक् कहकर सम्बोधित करते हैं।</p>
+    <p>श्रौत यज्ञों में मुख्यतः चार ऋत्विक् होते हैं — ऋग्वेद का प्रतिनिधित्व करने वाले होता, यजुर्वेद का प्रतिनिधित्व करने वाले अध्वर्यु, सामवेद से सम्बद्ध उद्गाता, और अथर्ववेद का प्रतिनिधित्व करने वाले ब्रह्मन्। यज्ञ के सर्वोच्च अधिकारी के रूप में बैठकर क्रियाओं में आई त्रुटियों का प्रायश्चित्त विधान करना और यज्ञ के आध्यात्मिक तत्त्व को समझाना — यही ब्रह्मन् ऋत्विक् का कार्य है। यदि आप 17 से 26 अप्रैल तक कोझिकोड के काक्कोडि स्थित वेदमहामंदिर में होने वाले अतिरात्र याग में आएँ, तो आप इन ऋत्विकों को और उनके कार्यों को प्रत्यक्ष देख सकते हैं।</p>
+    <p>चारों ऋत्विकों में से भीष्म श्रीकृष्ण को ब्रह्मन् के आसन के लिए नामित करते हैं। उस अवसर पर सभी एकमत होते हैं कि यज्ञ में अर्घ्य ग्रहण करने के योग्य श्रीकृष्ण ही हैं। परन्तु शिशुपाल ने इसका विरोध करते हुए श्रीकृष्ण का अपमान करने का प्रयास किया और इसी प्रकार शिशुपाल-वध हुआ।</p>
+    <p>यहाँ ध्यान देने योग्य बात यह है कि केवल वही व्यक्ति यज्ञ में ब्रह्मन् के आसन पर बैठकर यज्ञ का संचालन कर सकता है, जिसे चारों वेदों और श्रौत यज्ञ की क्रियाओं में समान रूप से पाण्डित्य हो। वेदव्यास जैसे महर्षियों के उपस्थित रहते भी, उस अवसर पर ब्रह्मन् के आसन पर श्रीकृष्ण ही विराजे।</p>
+    <h4>दूसरा प्रसंग — महाभारत, उद्योग पर्व:</h4>
+    <p>जब श्रीकृष्ण दूत के रूप में हस्तिनापुर गए, तो कौरव सभा में जाने से पहले उन्होंने स्वयं आचमन आदि करके, मंत्रोच्चार के साथ अग्निहोत्र यज्ञ सम्पन्न किया। श्लोक है — <em>"कृतोदकानुजप्यः स हुताग्निः समलङ्कृतः"</em> (उद्योग पर्व 83.6)। अर्थात् महाभारत में स्पष्ट उल्लेख है कि श्रीकृष्ण ने स्वयं अग्नि में हवि अर्पित करके यज्ञ किया।</p>
+    <h4>तीसरा प्रसंग — महाभारत, आश्वमेधिक पर्व:</h4>
+    <p>कुरुक्षेत्र युद्ध के पश्चात शोकमग्न युधिष्ठिर को श्रीकृष्ण इस प्रकार उपदेश देते हैं:</p>
+    <blockquote>"हे जनाधिप! आपका अत्यंत शोक में डूबा मन, पूर्वपितरों को भी संताप में डाल रहा है। अतः इस शोक को त्यागकर, दक्षिणा सहित विविध यज्ञों में देवताओं की आराधना करें।" (आश्व. पर्व 2.2–3)</blockquote>
+    <p>यहाँ श्रीकृष्ण युधिष्ठिर को वाजिमेध (अश्वमेध यज्ञ) तथा अन्य दक्षिणा यज्ञ करने का परामर्श देते हैं। महर्षि व्यास युधिष्ठिर को अन्य दक्षिणा यज्ञों का विवरण देते हैं — <em>"राजसूय-अश्वमेधौ च सर्वमेधं च भारत, नरमेधं च नृपते त्वमाहर युधिष्ठिर।"</em></p>
+    <p>इस प्रकार महाभारत से यह स्पष्ट होता है कि श्रीकृष्ण न केवल यज्ञ-विरोधी नहीं थे, बल्कि वे स्वयं यज्ञ में ऋत्विक् के रूप में बैठे, स्वयं होम किया, और दूसरों को भी यज्ञ करने के लिए प्रेरित किया।</p>
+  `
+},
+
+// ── Item 4: Yaga Culture in Sindhu-Saraswati Civilisation ────────────────────
+4: {
+  ml: `
+    <p>ഭാരതത്തിന്റെ പ്രാചീന നാഗരികതയായ സിന്ധു-സരസ്വതി നാഗരികതയില്‍ ജീവിച്ചിരുന്നവര്‍ക്ക് വേദപാരമ്പര്യം ഉണ്ടായിരുന്നില്ല എന്നും പിന്നീട് മധ്യേഷ്യയില്‍നിന്നും വന്ന ആര്യന്മാരാണ് വേദങ്ങളും യാഗങ്ങളുമെല്ലാം ഭാരതത്തിലേക്ക് കൊണ്ടുവന്നത് എന്നുമാണ് ഇന്ന് അക്കാദമിക മേഖലയില്‍ പ്രബലമായുള്ള ഒരു വാദം. എന്നാല്‍ ഇത് ശരിയല്ല എന്നതിനുള്ള ഒട്ടേറെ തെളിവുകള്‍ മുന്നോട്ടുവെക്കുന്നുണ്ട്.</p>
+    <p>രാജസ്ഥാനിലെ കാലിബംഗാനില്‍ ഉത്ഖനനം ചെയ്ത് കണ്ടെത്തിയ കീഴ്‌നഗരത്തിലെ വീടുകളിലെ ഒരു മുറിയില്‍ ഹോമകുണ്ഡം ഉണ്ടായിരുന്നു — അതില്‍ കരിയും ചാരവും ഉണ്ടായിരുന്നു. പാഴ്‌സികളുടെ സൊറോസ്ട്രിയന്‍ യജ്ഞകുണ്ഡങ്ങളില്‍നിന്നും തീര്‍ത്തും വ്യത്യസ്തമാണ് ഇത് എന്ന് കാലിബംഗാന്‍ ഉത്ഖനനത്തിന് നേതൃത്വം നല്‍കിയ പ്രൊഫ. ബി.ബി.ലാല്‍ അഭിപ്രായപ്പെടുന്നു. സിറ്റാഡലില്‍ കൂടുതല്‍ വിപുലമായ ഒരു യജ്ഞവേദി അദ്ദേഹം കണ്ടെത്തി — വടക്ക് നിന്നും തെക്കിലേക്ക് ഏഴ് അഗ്‌നികുണ്ഡങ്ങളുടെ ഒരു നിര, കിഴക്കോട്ട് തിരിഞ്ഞ് യജ്ഞം ചെയ്യാന്‍ സാധിക്കുന്ന രീതിയില്‍. സോമയാഗങ്ങളില്‍ ഇവയെ ധിഷ്ണ്യ എന്നാണ് വിളിക്കുക. ഇൗ സവിശേഷതകളെല്ലാമുള്ള ധിഷ്ണ്യകള്‍ കാലിബംഗാനിലും കണ്ടെത്തിയത് — അതിരാത്ര യാഗശാലയില്‍ ഇവ നേരില്‍ കാണാം.</p>
+    <p>ഇത് പാചകത്തിനുള്ള അടുപ്പുകളാകാം എന്ന് ചിലര്‍ പറഞ്ഞതിനുള്ള മറുപടിയായി, എന്തുകൊണ്ട് അങ്ങനെ അല്ല എന്നതിന് കൃത്യമായ തെളിവുകളും ബി.ബി. ലാല്‍ മുന്നോട്ടുവെക്കുന്നുണ്ട്. <em>'The Rigvedic People: Invaders? Immigrants? or Indigenous?'</em> എന്ന ഗ്രന്ഥത്തില്‍ ഇതേക്കുറിച്ച് വായിക്കാം.</p>
+    <p>ഹരിയാനയിലെ ബനവാലിയില്‍ കാലിബംഗാനിന് സമാനമായ ഹോമകുണ്ഡങ്ങള്‍ കണ്ടെത്തിയിട്ടുണ്ട്. ഗുജറാത്തിലെ ലോത്തലില്‍ ഒരു 'യാഗവേദി'യും ഇഷ്ടികകള്‍ കൊണ്ടുള്ള കുണ്ഡങ്ങളും കണ്ടെത്തി — അതിരാത്ര യാഗശാലയില്‍ കാണുന്ന വൃത്താകൃതിയിലുള്ള ഗാര്‍ഹപത്യാഗ്നിയുടെയും സമചതുരാകൃതിയിലുള്ള ആഹവനീയാഗ്നിയുടെയും കുണ്ഡങ്ങള്‍ പ്രത്യേകം തിരിച്ചറിയാനും സാധിച്ചു. (ഇവ നിങ്ങള്‍ക്ക് അതിരാത്ര യാഗശാലയില്‍ നേരില്‍ കാണാം.)</p>
+    <p>ഇവിടങ്ങളില്‍ കണ്ടെത്തിയ അഗ്നികുണ്ഡങ്ങളിലെ ചാരവും മറ്റും, കൂടെക്കൂടെ യജ്ഞം നടന്നിരുന്ന ഇടമായിരുന്നു ഇവ എന്ന് സൂചിപ്പിക്കുന്നതാണ്. സിന്ധു-സരസ്വതി സംസ്‌കാരത്തിന്റെ ഭാഗമായി ഉത്ഖനനം ചെയ്യപ്പെട്ടതില്‍ ഏറ്റവും വിസ്തൃതിയുള്ള ഇടമായ രാഖിഗഢിയില്‍ പൊതുവായ സ്ഥലങ്ങളിലും സ്വകാര്യ പാര്‍പ്പിടങ്ങളിലും ഹോമകുണ്ഡങ്ങള്‍ കണ്ടെത്തുകയുണ്ടായി. സൈന്ധവ ലിപി വായിച്ചെടുക്കുന്നതില്‍ ഇന്നും നിര്‍ണയമായില്ല എങ്കില്‍ക്കൂടി, ലഭ്യമായ പുരാവസ്തു തെളിവുകള്‍ തന്നെ യജ്ഞ-യാഗ സംസ്‌കാരം ഇവിടങ്ങളില്‍ എത്രത്തോളം വ്യാപകമായിരുന്നു എന്ന് കാണിക്കുന്നതാണ്.</p>
+  `,
+  en: `
+    <p>One of the dominant arguments in academic circles today is that the people who lived in the Sindhu-Sarasvatī civilisation — India's ancient civilisation — had no Vedic tradition, and that it was the Āryans who came later from Central Asia who brought the Vedas and yāgas to India. However, a great deal of evidence has been put forward to show that this is not correct.</p>
+    <p>In the lower town excavated at Kālibangān in Rajasthan, one of the rooms in the houses contained a homakunḍa with ash and charcoal within it. Prof. B.B. Lal, who led the Kālibangān excavations, observes that this is entirely different from the Zoroastrian fire altars of the Parsis. He also discovered a more elaborate yajñavedi in the Citadel — a row of seven fire pits arranged from north to south, constructed so that one could perform the yajña facing east. In Somayāgas, these are called Dhiṣṇyas. It is fire pits with all these very same characteristics that were found at Kālibangān as well. You can see these Dhiṣṇyas in person at the Sadoḥ Maṇḍapa on the Mahāvedi of the Athirathra Yāgaśālā.</p>
+    <p>To those who suggested these might merely be cooking hearths, B.B. Lal also presents precise evidence for why that is not the case. This can be read in his book <em>'The Rigvedic People: Invaders? Immigrants? or Indigenous?'</em></p>
+    <p>Similar homakunḍas to those at Kālibangān have been found at Banawali in Haryana. At Lothal in Gujarat, a 'yāgavedi' and brick-built kuṇḍas were discovered — among these, it was also possible to separately identify the circular kuṇḍa of the Gārhapatya fire and the square kuṇḍa of the Āhavanīya fire, the same forms seen in the Prācīnavaṃśa vedi of the Athirathra Yāgaśālā. (You can see these too in person at the Athirathra Yāgaśālā.)</p>
+    <p>The ash and other remains found in the fire pits at these sites indicate that they were places where yajñas were performed repeatedly. At Rākhīgaṛhī — the most extensively excavated site belonging to the Sindhu-Sarasvatī culture — homakunḍas were found in both public spaces and private residences. Even though the Indus script has not yet been definitively deciphered, the archaeological evidence available by itself demonstrates how widespread the culture of yajña and yāga was in these places.</p>
+  `,
+  hi: `
+    <p>अकादमिक क्षेत्र में आज भी यह तर्क प्रबल है कि भारत की प्राचीन सिंधु-सरस्वती सभ्यता के लोगों में वैदिक परंपरा नहीं थी — यह माना जाता रहा है कि मध्य एशिया से आए आर्य अपने साथ वेद और यज्ञ की परंपरा भारत लाए। किंतु वर्तमान में उपलब्ध पुरातात्विक साक्ष्य इस धारणा का खंडन करते हैं।</p>
+    <p>राजस्थान के कालीबंगा में उत्खनन के दौरान निचले नगर के घरों के कमरों में होमकुंड प्राप्त हुए हैं, जिनमें कोयला और राख के अवशेष मिले हैं। कालीबंगन उत्खनन का नेतृत्व करने वाले प्रो. बी.बी. लाल के अनुसार, ये कुंड पारसियों के जोरोस्ट्रियन यज्ञकुंडों से पूर्णतः भिन्न हैं। उन्होंने नगर के दुर्ग क्षेत्र में एक विशाल यज्ञवेदी भी खोजी — उत्तर से दक्षिण की दिशा में सात अग्निकुंडों की एक पंक्ति, पूर्व की ओर मुख करके यज्ञ संपन्न करने के लिए। सोमयागों में इन्हें 'धिष्ण्य' कहा जाता है, और ये कालीबंगन में भी ठीक वैसी ही मिली हैं जैसी अतिरात्र यज्ञशाला में दिखती हैं।</p>
+    <p>कुछ विद्वानों ने इन्हें खाना पकाने वाले चूल्हे माना था, किंतु प्रो. बी.बी. लाल ने अपनी पुस्तक <em>'The Rigvedic People: Invaders? Immigrants? or Indigenous?'</em> में ठोस प्रमाणों के साथ इस मत का खंडन किया है।</p>
+    <p>यज्ञ संस्कृति के अन्य साक्ष्य निम्नलिखित स्थानों पर भी मिले हैं:</p>
+    <ul>
+      <li><strong>बनावली (हरियाणा):</strong> यहाँ भी कालीबंगन के समान ही होमकुंड पाए गए हैं।</li>
+      <li><strong>लोथल (गुजरात):</strong> एक विस्तृत यज्ञवेदी और ईंटों से बने कुंड मिले हैं — वृत्ताकार गार्हपत्य अग्नि और वर्गाकार आहवनीय अग्नि के कुंड विशेष रूप से पहचाने गए। ऐसी ही अग्निशालाएँ आप अतिरात्र यज्ञशाला में प्रत्यक्ष देख सकते हैं।</li>
+      <li><strong>राखीगढ़ी:</strong> सिंधु-सरस्वती सभ्यता के इस सबसे विशाल स्थल पर सार्वजनिक और निजी निवासों, दोनों जगहों पर होमकुंड प्राप्त हुए हैं।</li>
+    </ul>
+    <p>यद्यपि सिंधु लिपि को अभी तक पूर्णतः पढ़ा नहीं जा सका है, फिर भी उपलब्ध पुरातात्विक साक्ष्य यह भली-भाँति दर्शाते हैं कि प्राचीन भारत में यज्ञ और याग की संस्कृति कितनी व्यापक और गहरी थी।</p>
+  `
+},
+
+// ── Item 5: Yajna and Agni in World Culture ───────────────────────────────────
+5: {
+  ml: `
+    <p>ഒളിമ്പിക്സിലേക്ക് ദീപശിഖ കടന്നുവരുന്നത് ഗ്രീക്ക് ദേവനായ പ്രൊമിഥ്യൂസിലൂടെയാണ്. സ്വര്‍ഗത്തില്‍നിന്നും അഗ്നിയെ കവര്‍ന്നടുത്ത് ഭൂമിയിലെ മനുഷ്യകുലത്തിന് നല്‍കിയ ദേവനാണ് ഗ്രീക്ക് മിത്തോളജിയിലെ പ്രൊമിഥ്യൂസ്. എന്നാല്‍, <em>''പ്രൊമിഥ്യൂസ് എന്നത് യഥാര്‍ഥത്തില്‍ യാഗങ്ങളില്‍ അഗ്‌നി സൃഷ്ടിക്കാനായി ഉപയോഗിക്കുന്ന അരണിക്കോല്‍ — 'പ്രമന്ഥ' (സംസ്‌കൃതം) — എന്നതിന്റെ ഗ്രീക്ക് രൂപമാണ് എന്ന സിദ്ധാന്തത്തെയാണ് പദോത്പത്തിശാസ്ത്രജ്ഞര്‍ പിന്തുണയ്ക്കുന്നത്''</em> എന്ന് എന്‍സൈക്ലോപീഡിയ ബ്രിട്ടാനിക്കയില്‍ (1911) വായിക്കാം. പ്ര + മഥ് ധാതു ചേരുമ്പോള്‍ ''തുളച്ചെടുക്കുക'' എന്ന അര്‍ഥം വരുന്നു — അരണി കടയുന്നത് ഇതേ ക്രിയ. ഇത് കവര്‍ന്നെടുക്കുകയായി തെറ്റിദ്ധരിച്ചതാണ് ഗ്രീസില്‍ 'അഗ്നി കവര്‍ന്ന' മിത്തായി മാറിയത് — ഇങ്ങനെയാണ് യാഗങ്ങളിലെ അരണിയില്‍നിന്ന് അഗ്നി ഒളിംപിക്‌സിലെ ദീപശിഖയിലേക്ക് എത്തിയത്.</p>
+    <p>യാഗസംസ്‌കൃതി ഗ്രീസിലേക്ക് എത്തുന്നതിന് മുന്‍പേ തന്നെ പ്രാചീന ഇറാനില്‍ (പേര്‍ഷ്യയില്‍) എത്തിച്ചേര്‍ന്നിരുന്നു. പേര്‍ഷ്യയില്‍ നിലനിന്നിരുന്ന സൊറോസ്ട്രിയന്‍ സംസ്‌കാരം വൈദിക സംസ്‌കാരത്തില്‍നിന്ന് രൂപംകൊണ്ടതാണ്. യജ്ഞം സൊറോസ്ട്രിയന്‍ സംസ്‌കാരത്തില്‍ എത്തിയപ്പോള്‍ 'യസ്നം' എന്നായി. യജ്ഞത്തില്‍ പാനം ചെയ്യുന്ന സോമം അവിടെ 'ഹൗമം' എന്നും അറിയപ്പെട്ടു. അഗ്‌നി അവിടെ അറിയപ്പെട്ടത് അഗ്‌നിയുടെ ആദ്യ ഉപജ്ഞാതാവായ ഋഷി അഥര്‍വന്റെ പേരിലായിരുന്നു — <em>അഥര്‍വ</em> ശബ്ദത്തിന്റെ അപഭ്രംശമായ 'ആതര്‍' എന്ന വാക്കുകൊണ്ടാണ് സൊറോസ്ട്രിയന്‍ പുണ്യഗ്രന്ഥമായ അവെസ്തയില്‍ അഗ്‌നിയെ വിളിക്കുന്നത്. ഹഖാമനി-സസാനിയന്‍ സാമ്രാജ്യങ്ങളുടെ കാലത്ത് 'ആതറി'ല്‍ 'യസ്നം' ചെയ്യുന്ന ചടങ്ങ് അഗ്‌നിപ്രതിഷ്ഠയിലേക്ക് വഴിമാറി. ഇത്തരം അഗ്‌നികളില്‍ ഏറ്റവും ദിവ്യമായതിനെ <em>ആതഷ് ബെഹ്‌റാം</em> (വിജയാഗ്‌നി) എന്ന് വിളിക്കുന്നു. ഈ അഗ്‌നി സൊറോസ്ട്രിയന്‍ അഗ്‌നിക്ഷേത്രങ്ങളില്‍ ഇന്നും കെടാതെ സൂക്ഷിക്കുന്നു.</p>
+    <p>യജ്ഞ സംസ്‌കൃതി പിന്നീട് യൂറോപ്പിന്റെ എല്ലാ ഭാഗങ്ങളിലേക്കും വ്യാപിച്ചു. <em>അഗ്‌നി</em> എന്ന നാമം അല്‍ബേനിയയില്‍ 'എഞ്ഞി', ലാറ്റിനില്‍ 'ഇഗ്‌നിസ്', ലിത്വാനിയയില്‍ 'ഉഗ്‌നിസ്', ലാത്വിയയില്‍ 'ഉഗുന്‍സ്', സ്ലാവിക്കില്‍ 'ഓഗോണ്‍' എന്നിങ്ങനെ ആയിത്തീര്‍ന്നു. ഭാരതത്തിലെ വൈദികര്‍ക്ക് സമാനരായ ലിത്വാനിയയിലെ പുരോഹിതന്മാരെ 'വൈദില' എന്നും സ്ത്രീ പുരോഹിതകളെ 'വൈദിലൂട്ടെസ്' എന്നുമാണ് വിളിച്ചിരുന്നത്. യൂറോപ്പില്‍ എല്ലായിടത്തും ഒരു കാലത്ത് യജ്ഞ-യാഗങ്ങള്‍ സാധാരണമായി നടന്നിരുന്നു.</p>
+  `,
+  en: `
+    <p>The Olympic flame comes to us through Prometheus, a god of Greek mythology — the deity who stole fire from heaven and gave it to humankind on earth. However, the Encyclopaedia Britannica (1911) records that "etymologists support the theory that Prometheus is actually the Greek form of <em>Pramantha</em> (Sanskrit) — the fire-drill used to produce fire in yāgas." The renowned German etymologist Heymann Steinthal explained how the Sanskrit word Pramantha became Prometheus in Greek. When the prefix <em>pra</em> combines with the root <em>math</em>, it yields the meaning "to bore through / to drill." The churning of the Araṇi (fire-drill) is an action analogous to "piercing" — this was misunderstood as "stealing," and so the Vedic act of kindling fire from the Araṇi transformed into the Greek myth of Prometheus stealing fire (<em>'The Original Form of the Legend of Prometheus'</em>). This is how fire — from the Araṇi of the yāga — found its way into the Olympic flame.</p>
+    <p>But yāga culture had already reached ancient Iran (Persia) before it arrived in Greece. The Zoroastrian culture that flourished in Persia was itself shaped from Vedic culture. When yajña reached Zoroastrian culture, it became <em>Yasna</em>. The Soma consumed during the yajña came to be known there as <em>Haoma</em>. And fire was known there by the name of Ṛiṣhi Atharvan — whom the Vedas present as the original discoverer of fire. In the Zoroastrian sacred text, the Avesta, fire is called <em>Ātar</em> — a derivative of the word Atharva. The ancient practice of performing Yasna in Ātar gradually shifted, during the Achaemenid and Sasanian empires (6th century BCE to 7th century CE), toward the consecration of a permanent sacred fire. The most divine among these fires they called <em>Ātaš Bahrām</em> (the Fire of Victory), which is kept perpetually burning in Zoroastrian fire temples to this day.</p>
+    <p>Yajña culture then spread to all parts of Europe. The Sanskrit word <em>Agni</em> became: Enji (Albanian), Ignis (Latin), Ugnis (Lithuanian), Uguns (Latvian), and Ogon (Slavic). The priests of Lithuania — akin to India's Vedic priests — were called <em>Vaidila</em>, and the priestesses <em>Vaidilutes</em>. At one time, yajñas and yāgas were commonplace throughout all of Europe.</p>
+  `,
+  hi: `
+    <p>ओलंपिक खेलों में प्रयुक्त होने वाली मशाल (Torch) की परंपरा यूनानी देवता प्रोमीथियस से जुड़ी मानी जाती है। यूनानी पौराणिक कथाओं के अनुसार, प्रोमीथियस ने स्वर्ग से अग्नि चुराकर मानवता को उपहार स्वरूप दी थी। किंतु 'एनसाइक्लोपीडिया ब्रिटानिका' (1911) के अनुसार, भाषाविदों का मानना है कि 'प्रोमीथियस' शब्द वास्तव में संस्कृत के <em>'प्रमन्थ'</em> शब्द का ही यूनानी रूप है — 'प्रमन्थ' उस लकड़ी (अरणि) को कहते हैं जिसका उपयोग यज्ञों में अग्नि उत्पन्न करने के लिए किया जाता है। प्रसिद्ध जर्मन भाषाविद हाइमन स्टीनथॉल ने इसकी व्याख्या की है — 'प्र' उपसर्ग जब 'मथ्' धातु से जुड़ता है, तब उसका अर्थ 'मंथन करना' होता है। अरणि को मथकर अग्नि प्रकट करने की यह प्रक्रिया ही कालांतर में यूनान में अग्नि 'चुराने' की कथा बन गई। इस प्रकार, यज्ञों की अरणि से प्रज्वलित अग्नि ही आज ओलंपिक की मशाल के रूप में विश्व के सम्मुख है।</p>
+    <p>यज्ञ संस्कृति यूनान से पूर्व प्राचीन ईरान (फारस) पहुँच चुकी थी। वहाँ की जोरोस्ट्रियन (पारसी) संस्कृति का मूल वैदिक संस्कृति ही है। वैदिक 'यज्ञ' शब्द वहाँ <em>'यस्न'</em> बन गया, और यज्ञों में प्रयुक्त होने वाला 'सोम' वहाँ <em>'हौम'</em> कहलाया। रोचक तथ्य यह है कि वहाँ अग्नि को वेदों के प्रथम अग्नि-अन्वेषक ऋषि अथर्वा के नाम से जाना गया। जोरोस्ट्रियन धर्मग्रंथ 'अवेस्ता' में अग्नि को <em>'आतर'</em> कहा गया है, जो 'अथर्व' शब्द का ही अपभ्रंश है। हखामनी और ससानियन साम्राज्यों के काल (600 ई.पू. से 700 ईस्वी) में 'आतर' में 'यस्न' करने की परंपरा ने अग्नि-प्रतिष्ठा का रूप ले लिया। इनमें सबसे पवित्र अग्नि को <em>'आतश बेहराम'</em> (विजय की अग्नि) कहा जाता है, जो आज भी पारसी अग्नि मंदिरों में निरंतर प्रज्वलित रखी जाती है।</p>
+    <p>यज्ञ और अग्नि की यह संस्कृति धीरे-धीरे संपूर्ण यूरोप में फैल गई। संस्कृत का 'अग्नि' शब्द विभिन्न भाषाओं में इस प्रकार परिवर्तित हुआ:</p>
+    <ul>
+      <li>लैटिन: <em>Ignis</em></li>
+      <li>लिथुआनियाई: <em>Ugnis</em></li>
+      <li>लातवियाई: <em>Uguns</em></li>
+      <li>स्लाविक: <em>Ogon</em></li>
+      <li>अल्बेनियाई: <em>Enji</em></li>
+    </ul>
+    <p>लिथुआनिया में भारत के वैदिक पुरोहितों के समान ही पुजारियों को <em>'वैदिल' (Vaidila)</em> और पुजारिनों को <em>'वैदिलुतेस' (Vaidilutes)</em> कहा जाता था। ये भाषाई और सांस्कृतिक प्रमाण दर्शाते हैं कि एक समय संपूर्ण यूरोप में यज्ञ और अग्नि की वैदिक परंपराएँ अत्यंत सामान्य थीं।</p>
+  `
+},
+
+}; // end ITEMS
+
+// ─── Panel metadata (titles in all 3 languages) ───────────────────────────────
+const META = {
+  1: { ml: 'അഗ്നിചയനവിദ്യ', en: 'Agnicayana Vidya', hi: 'अग्निचयन विद्या' },
+  2: { ml: 'സോമയാഗങ്ങളെ സ്‌നേഹിച്ച ശ്രീരാമൻ', en: 'Śrī Rāma and His Love for Somayāgas', hi: 'सोमयागों के प्रेमी श्रीराम' },
+  3: { ml: 'യാഗസംരക്ഷകനായ ശ്രീകൃഷ്ണൻ', en: 'Śrī Kṛṣṇa — Protector of Yāgas', hi: 'यज्ञ के रक्षक श्रीकृष्ण' },
+  4: { ml: 'സിന്ധു-സരസ്വതി നാഗരികതയിലെ യാഗസംസ്‌കൃതി', en: 'Yāga Culture in the Sindhu-Sarasvatī Civilisation', hi: 'सिंधु-सरस्वती सभ्यता में यज्ञ संस्कृति' },
+  5: { ml: 'വൈശ്വിക സംസ്‌കൃതിയിൽ യജ്ഞ-അഗ്നി', en: 'Yajña and Agni in World Culture', hi: 'वैश्विक संस्कृति में यज्ञ और अग्नि' }
+};
+
+// ─── Brief descriptions for landing page cards ────────────────────────────────
+const BRIEFS = {
+  1: 'The Katha Upanishad recounts how young Naciketas journeys to the realm of Yama and receives the secret of Agnicayana — the sacred fire altar whose arrangement of bricks conceals profound spiritual mysteries.',
+  2: 'Valmiki Ramayana reveals that Śrī Rāma was steeped in yajña culture from childhood. Agnihotra fires blazed in his forest hermitage, and he reminded Bharata to never let the Somayāgas lapse.',
+  3: 'Three passages from the Mahabharata show that far from opposing yāgas, Śrī Kṛṣṇa sat as the Brahman Ṛitvik at the Rājasūya, personally performed Agnihotra before entering Hastinapura, and urged Yudhiṣṭhira to perform the Aśvamedha.',
+  4: 'Archaeological excavations at Kālibangān, Banawali, Lothal, and Rākhīgaṛhī — sites of the Sindhu-Sarasvatī civilisation — have uncovered fire altars and Dhiṣṇya configurations identical to those used in Somayāgas today.',
+  5: 'From the Olympic flame traced to Sanskrit Pramantha, to Zoroastrian Yasna and Ātar, to the word Agni echoing through Latin, Lithuanian, and Slavic languages — the reach of Vedic yajña culture across the ancient world.'
+};
+
+// ─── Render ───────────────────────────────────────────────────────────────────
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const rawId  = params.get('id');
+  const id     = rawId ? parseInt(rawId, 10) : 0;
+
+  const landingEl = document.getElementById('landing-area');
+  const errorEl   = document.getElementById('error-state');
+  const panelEl   = document.getElementById('panel-area');
+  const labelEl   = document.getElementById('panel-label');
+  const titleEl   = document.getElementById('item-title');
+  const contentEl = document.getElementById('content-area');
+  const prevBtn   = document.getElementById('prev-btn');
+  const nextBtn   = document.getElementById('next-btn');
+  const allList   = document.getElementById('all-panels-list');
+
+  // ── Landing page (no ?id param) ──────────────────────────────────────────────
+  if (!rawId) {
+    landingEl.classList.remove('hidden');
+    document.title = 'History Panels | Athirathram 2026';
+    const grid = document.getElementById('panel-cards');
+    for (let i = 1; i <= 5; i++) {
+      const card = document.createElement('a');
+      card.href = `history.html?id=${i}`;
+      card.className = 'group block bg-surface-container-low rounded-2xl p-6 border border-outline-variant/10 hover:border-[#E9C349]/30 hover:bg-surface-container transition-all';
+      card.innerHTML = `
+        <div class="flex items-start gap-4 mb-4">
+          <span class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center text-on-primary-fixed font-bold text-sm flex-shrink-0">${i}</span>
+          <div>
+            <p class="text-xs font-label tracking-[0.25em] uppercase text-secondary mb-1">Panel ${i}</p>
+            <h2 class="font-headline text-lg md:text-xl text-on-background leading-snug group-hover:text-[#FFB692] transition-colors">${META[i].en}</h2>
+          </div>
+        </div>
+        <p class="text-on-surface-variant text-sm leading-relaxed mb-5">${BRIEFS[i]}</p>
+        <div class="flex items-center gap-1 text-primary text-sm font-semibold">
+          Read More <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+    return;
+  }
+
+  // ── Invalid id ───────────────────────────────────────────────────────────────
+  if (!META[id]) {
+    errorEl.classList.remove('hidden');
+    return;
+  }
+
+  panelEl.classList.remove('hidden');
+  labelEl.textContent = `Panel ${id} of 5`;
+
+  // Build all-panels list
+  for (let i = 1; i <= 5; i++) {
+    const a = document.createElement('a');
+    a.href = `history.html?id=${i}`;
+    a.className = i === id
+      ? 'flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container border border-primary/30 text-primary text-sm font-semibold'
+      : 'flex items-center gap-3 px-4 py-3 rounded-lg border border-outline-variant/10 text-on-surface-variant hover:border-outline-variant/30 hover:text-on-surface transition-colors text-sm';
+    a.innerHTML = `<span class="w-6 h-6 rounded-full ${i === id ? 'bg-primary-container' : 'bg-surface-container-high'} flex items-center justify-center text-xs font-bold ${i === id ? 'text-on-primary-fixed' : 'text-on-surface-variant'}">${i}</span><span class="font-headline truncate">${META[i].ml}</span>`;
+    allList.appendChild(a);
+  }
+
+  // Prev / Next
+  if (id > 1) {
+    prevBtn.href = `history.html?id=${id - 1}`;
+    prevBtn.classList.remove('hidden');
+    prevBtn.classList.add('flex');
+  }
+  if (id < 5) {
+    nextBtn.href = `history.html?id=${id + 1}`;
+    nextBtn.classList.remove('hidden');
+    nextBtn.classList.add('flex');
+  }
+
+  // Language switching — default to English
+  let currentLang = 'en';
+
+  function renderContent() {
+    const langMeta = META[id][currentLang];
+    titleEl.textContent = langMeta;
+    document.title = `Panel ${id}: ${langMeta} | Athirathram 2026`;
+
+    const data = ITEMS[id];
+    if (data && data[currentLang]) {
+      contentEl.innerHTML = data[currentLang];
+    } else {
+      contentEl.innerHTML = '<p class="text-on-surface-variant italic">Content coming soon.</p>';
+    }
+
+    // Apply lang class for proper script font
+    contentEl.className = 'text-base md:text-lg fade-up lang-' + currentLang;
+
+    // Update tab states
+    document.querySelectorAll('.lang-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+  }
+
+  document.querySelectorAll('.lang-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLang = btn.dataset.lang;
+      renderContent();
+    });
+  });
+
+  renderContent();
+})();
+</script>
+
+</body>
+</html>
