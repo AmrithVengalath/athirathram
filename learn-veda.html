@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Learn Veda | Athirathram 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-fixed-variant": "#793100",
+          "surface-dim": "#131313",
+          "tertiary": "#c9c6c0",
+          "surface-container-low": "#1c1b1b",
+          "outline": "#a78b7e",
+          "on-secondary": "#3c2f00",
+          "error": "#ffb4ab",
+          "on-primary": "#552000",
+          "primary": "#ffb692",
+          "tertiary-fixed": "#e5e2db",
+          "surface-bright": "#393939",
+          "secondary-fixed": "#ffe088",
+          "primary-container": "#ff7722",
+          "inverse-primary": "#9f4200",
+          "outline-variant": "#584237",
+          "on-background": "#e5e2e1",
+          "on-error": "#690005",
+          "primary-fixed": "#ffdbcb",
+          "inverse-on-surface": "#313030",
+          "surface-tint": "#ffb692",
+          "surface-variant": "#353535",
+          "on-surface-variant": "#e0c0b1",
+          "tertiary-container": "#a19f99",
+          "on-secondary-fixed-variant": "#574500",
+          "error-container": "#93000a",
+          "surface-container": "#20201f",
+          "surface": "#131313",
+          "on-error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#c9c6c0",
+          "on-secondary-fixed": "#241a00",
+          "on-tertiary-fixed": "#1c1c18",
+          "on-secondary-container": "#342800",
+          "secondary-container": "#af8d11",
+          "surface-container-lowest": "#0e0e0e",
+          "secondary-fixed-dim": "#e9c349",
+          "on-primary-container": "#5e2400",
+          "surface-container-high": "#2a2a2a",
+          "on-tertiary-container": "#373632",
+          "on-primary-fixed": "#341100",
+          "inverse-surface": "#e5e2e1",
+          "surface-container-highest": "#353535",
+          "secondary": "#e9c349",
+          "on-tertiary": "#31312c",
+          "on-surface": "#e5e2e1",
+          "primary-fixed-dim": "#ffb692",
+          "background": "#131313",
+          "on-tertiary-fixed-variant": "#474742"
+        },
+        fontFamily: {
+          "headline": ["Noto Serif"],
+          "body": ["Manrope"],
+          "label": ["Manrope"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  .input-field {
+    width: 100%;
+    background: #131313;
+    border: 1px solid rgba(88,66,55,0.4);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #e5e2e1;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-field:focus {
+    border-color: #ffb692;
+  }
+  .input-field::placeholder {
+    color: rgba(167,139,126,0.6);
+  }
+  select.input-field option {
+    background: #1c1b1b;
+    color: #e5e2e1;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fade-up 0.7s cubic-bezier(0.23,1,0.32,1) both; }
+  .fade-up-2 { animation: fade-up 0.7s 0.15s cubic-bezier(0.23,1,0.32,1) both; }
+  .fade-up-3 { animation: fade-up 0.7s 0.3s cubic-bezier(0.23,1,0.32,1) both; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)]">
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 md:py-6 max-w-screen-2xl mx-auto">
+  <a href="index.html" class="text-lg md:text-2xl font-serif font-bold text-[#E9C349] tracking-widest hover:opacity-80 transition-opacity">Athirathram 2026</a>
+  <div class="hidden md:flex gap-8 items-center font-serif text-lg tracking-tight">
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html">The Yajna</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#ritual-explorer">Schedule</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#location">Location</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="master.html">The Master</a>
+    <a class="text-[#FFB692] border-b-2 border-[#E9C349] pb-1" href="learn-veda.html">Learn Veda</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#brochure">Brochure</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="support.html">Support</a>
+  </div>
+  <a href="support.html" class="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2 rounded font-semibold hover:scale-105 transition-transform">Register/Donate</a>
+  <button id="menu-toggle" onclick="var m=document.getElementById('mobile-menu');m.classList.toggle('hidden');this.querySelector('.bar1').classList.toggle('rotate-45');this.querySelector('.bar1').classList.toggle('translate-y-2');this.querySelector('.bar2').classList.toggle('opacity-0');this.querySelector('.bar3').classList.toggle('-rotate-45');this.querySelector('.bar3').classList.toggle('-translate-y-2');" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+    <span class="bar1 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar2 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar3 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+  </button>
+</nav>
+<div id="mobile-menu" class="hidden md:hidden bg-[#1C1B1B] border-t border-[#E9C349]/10 px-6 py-6 flex flex-col gap-5 font-serif text-lg">
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html">The Yajna</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#ritual-explorer">Schedule</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#location">Location</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="master.html">The Master</a>
+  <a class="text-[#FFB692] border-b border-[#E9C349]/30 pb-3" href="learn-veda.html">Learn Veda</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#brochure">Brochure</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="support.html">Support</a>
+  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center mt-2">Register/Donate</a>
+</div>
+</header>
+
+<main>
+
+<!-- Hero + Form -->
+<section class="relative min-h-screen flex items-stretch overflow-hidden" id="register">
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-surface/30 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent z-10"></div>
+    <img class="w-full h-full object-cover object-top brightness-50" src="images/master_2_new.png" alt="Vedic learning"/>
+  </div>
+
+  <!-- Content: two columns on desktop, stacked on mobile -->
+  <div class="relative z-20 w-full max-w-6xl mx-auto px-6 md:px-12 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+    <!-- Left: brief copy -->
+    <div class="flex-1 text-center md:text-left">
+      <span class="font-label text-secondary tracking-[0.4em] uppercase text-xs mb-4 block fade-up">Ancient Wisdom. Living Tradition.</span>
+      <h1 class="font-headline text-4xl md:text-5xl lg:text-6xl text-on-background leading-tight mb-5 fade-up-2">
+        Learn the <span class="text-[#E9C349] italic">Vedas</span>
+      </h1>
+      <p class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed fade-up-3 max-w-sm mx-auto md:mx-0">
+        Register your interest and our team will reach out to you about the programme.
+      </p>
+    </div>
+
+    <!-- Right: form -->
+    <div class="w-full md:w-[480px] flex-shrink-0">
+  <div class="w-full">
+
+    <!-- Form card -->
+    <div id="lv-form-wrap" class="bg-surface-container-low rounded-2xl p-6 md:p-10 border border-outline-variant/10">
+      <div class="mb-6">
+        <span class="font-label text-secondary tracking-[0.35em] uppercase text-xs mb-2 block">Register Your Interest</span>
+        <h2 class="font-headline text-3xl md:text-4xl text-on-background">Learn Veda</h2>
+      </div>
+
+      <form id="lv-form" class="space-y-5" novalidate>
+
+        <!-- Name -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="lv-name">
+            Full Name <span class="text-primary">*</span>
+          </label>
+          <input id="lv-name" type="text" placeholder="Your full name" required class="input-field"/>
+        </div>
+
+        <!-- Age + WhatsApp row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="lv-age">
+              Age <span class="text-primary">*</span>
+            </label>
+            <input id="lv-age" type="number" placeholder="Your age" min="5" max="100" required class="input-field"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="lv-whatsapp">
+              WhatsApp Number <span class="text-primary">*</span>
+            </label>
+            <input id="lv-whatsapp" type="tel" placeholder="10-digit mobile number" maxlength="10" required class="input-field font-mono tracking-widest"/>
+          </div>
+        </div>
+
+        <!-- District -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="lv-district">
+            District <span class="text-primary">*</span>
+          </label>
+          <input id="lv-district" type="text" placeholder="Your district" required class="input-field"/>
+        </div>
+
+        <!-- State -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1.5" for="lv-state">
+            State <span class="text-primary">*</span>
+          </label>
+          <select id="lv-state" required class="input-field">
+            <option value="" disabled>Select your state</option>
+            <option>Andhra Pradesh</option>
+            <option>Arunachal Pradesh</option>
+            <option>Assam</option>
+            <option>Bihar</option>
+            <option>Chhattisgarh</option>
+            <option>Goa</option>
+            <option>Gujarat</option>
+            <option>Haryana</option>
+            <option>Himachal Pradesh</option>
+            <option>Jharkhand</option>
+            <option>Karnataka</option>
+            <option selected>Kerala</option>
+            <option>Madhya Pradesh</option>
+            <option>Maharashtra</option>
+            <option>Manipur</option>
+            <option>Meghalaya</option>
+            <option>Mizoram</option>
+            <option>Nagaland</option>
+            <option>Odisha</option>
+            <option>Punjab</option>
+            <option>Rajasthan</option>
+            <option>Sikkim</option>
+            <option>Tamil Nadu</option>
+            <option>Telangana</option>
+            <option>Tripura</option>
+            <option>Uttar Pradesh</option>
+            <option>Uttarakhand</option>
+            <option>West Bengal</option>
+            <option>Andaman and Nicobar Islands</option>
+            <option>Chandigarh</option>
+            <option>Dadra and Nagar Haveli and Daman and Diu</option>
+            <option>Delhi</option>
+            <option>Jammu and Kashmir</option>
+            <option>Ladakh</option>
+            <option>Lakshadweep</option>
+            <option>Puducherry</option>
+          </select>
+        </div>
+
+        <!-- Error -->
+        <p id="lv-error" class="hidden text-red-400 text-xs font-medium"></p>
+
+        <!-- Submit -->
+        <button type="submit" id="lv-submit"
+          class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-bold py-3.5 rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2 text-base mt-2">
+          <span class="material-symbols-outlined text-base">send</span>
+          Submit Registration
+        </button>
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div id="lv-success" class="hidden bg-surface-container-low rounded-2xl p-10 border border-[#E9C349]/20 text-center">
+      <div class="w-16 h-16 rounded-full bg-[#E9C349]/10 flex items-center justify-center mx-auto mb-6">
+        <span class="material-symbols-outlined text-[#E9C349] text-4xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+      </div>
+      <h3 class="font-headline text-2xl md:text-3xl text-on-background mb-3">Registration Received</h3>
+      <p class="text-on-surface-variant leading-relaxed mb-8 max-w-md mx-auto">Thank you for your interest. Our team will reach out to you on your WhatsApp number to share details about the Learn Veda programme.</p>
+      <a href="index.html" class="inline-block border border-outline-variant text-on-surface px-8 py-3 rounded-lg font-semibold hover:bg-surface-variant transition-colors text-sm">
+        Back to Home
+      </a>
+    </div>
+
+    </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#1C1B1B] w-full pt-12 md:pt-24 pb-12">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 text-center md:text-left">
+    <div>
+      <div class="text-xl font-headline text-[#FFB692] mb-6">Athirathram 2026</div>
+      <p class="font-body text-sm tracking-wide leading-relaxed text-[#E5E2E1]/60 mb-6 max-xs">
+        Dedicated to the revival and preservation of ancient Vedic wisdom and the upliftment of humanity through sacred rituals.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h4 class="text-[#E9C349] font-semibold mb-2">Quick Links</h4>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="index.html">The Yajna</a>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="master.html">The Master</a>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="learn-veda.html">Learn Veda</a>
+      <a class="text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm font-label" href="support.html">Support & Donate</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h4 class="text-[#E9C349] font-semibold mb-2">Contact Us</h4>
+      <div class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 text-sm">
+        <span class="material-symbols-outlined text-sm">mail</span>info@kvrf.org
+      </div>
+      <div class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 text-sm">
+        <span class="material-symbols-outlined text-sm">location_on</span>Kerala, India
+      </div>
+      <a href="tel:+919745915151" class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm">
+        <span class="material-symbols-outlined text-sm text-[#FFB692]">call</span>+91 97459 15151
+      </a>
+      <a href="tel:+917907080682" class="flex items-center gap-3 justify-center md:justify-start text-[#E5E2E1]/60 hover:text-[#FFB692] transition-colors text-sm">
+        <span class="material-symbols-outlined text-sm text-[#FFB692]">call</span>+91 79070 80682
+      </a>
+    </div>
+  </div>
+  <div class="mt-10 md:mt-20 pt-8 border-t border-outline-variant/10 text-center">
+    <p class="font-body text-sm tracking-wide text-[#E5E2E1]/60">© 2026 Kasyapa Veda Research Foundation. All Rights Sacred.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxg-Ip4CJEU-3oX_U2RJfg5P9N-pz05tcsm5hDtQLfRGB77rzKqrO7li9Zmu_xsqiF69w/exec';
+
+  const form      = document.getElementById('lv-form');
+  const formWrap  = document.getElementById('lv-form-wrap');
+  const success   = document.getElementById('lv-success');
+  const submitBtn = document.getElementById('lv-submit');
+  const errorEl   = document.getElementById('lv-error');
+
+  // WhatsApp — digits only
+  document.getElementById('lv-whatsapp').addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '').substring(0, 10);
+  });
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorEl.classList.add('hidden');
+
+    const name     = document.getElementById('lv-name').value.trim();
+    const age      = document.getElementById('lv-age').value.trim();
+    const whatsapp = document.getElementById('lv-whatsapp').value.trim();
+    const district = document.getElementById('lv-district').value.trim();
+    const state    = document.getElementById('lv-state').value;
+
+    if (!name)                                           return showError('Please enter your full name.');
+    if (!age || age < 5 || age > 100)                   return showError('Please enter a valid age.');
+    if (!whatsapp || !/^\d{10}$/.test(whatsapp))        return showError('Please enter a valid 10-digit WhatsApp number.');
+    if (!district)                                       return showError('Please enter your district.');
+    if (!state)                                          return showError('Please select your state.');
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Submitting...';
+
+    try {
+      const params = new URLSearchParams({ name, age, district, state, whatsapp });
+      await fetch(SHEET_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+    } catch (_) {}
+
+    formWrap.classList.add('hidden');
+    success.classList.remove('hidden');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.remove('hidden');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<span class="material-symbols-outlined text-base">send</span> Submit Registration';
+  }
+})();
+</script>
+
+</body>
+</html>
