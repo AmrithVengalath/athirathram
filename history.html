@@ -872,8 +872,8 @@ const BRIEFS = {
     nextBtn.classList.add('flex');
   }
 
-  // Language switching — default to English
-  let currentLang = 'en';
+  // Language switching — default to Malayalam for panels with no English content
+  let currentLang = (id >= 8) ? 'ml' : 'en';
 
   function renderContent() {
     const langMeta = META[id][currentLang];
