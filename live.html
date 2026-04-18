@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Watch Live | Athirathram 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-primary-fixed-variant": "#793100",
+          "surface-dim": "#131313",
+          "tertiary": "#c9c6c0",
+          "surface-container-low": "#1c1b1b",
+          "outline": "#a78b7e",
+          "on-secondary": "#3c2f00",
+          "error": "#ffb4ab",
+          "on-primary": "#552000",
+          "primary": "#ffb692",
+          "tertiary-fixed": "#e5e2db",
+          "surface-bright": "#393939",
+          "secondary-fixed": "#ffe088",
+          "primary-container": "#ff7722",
+          "inverse-primary": "#9f4200",
+          "outline-variant": "#584237",
+          "on-background": "#e5e2e1",
+          "on-error": "#690005",
+          "primary-fixed": "#ffdbcb",
+          "inverse-on-surface": "#313030",
+          "surface-tint": "#ffb692",
+          "surface-variant": "#353535",
+          "on-surface-variant": "#e0c0b1",
+          "tertiary-container": "#a19f99",
+          "on-secondary-fixed-variant": "#574500",
+          "error-container": "#93000a",
+          "surface-container": "#20201f",
+          "surface": "#131313",
+          "on-error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#c9c6c0",
+          "on-secondary-fixed": "#241a00",
+          "on-tertiary-fixed": "#1c1c18",
+          "on-secondary-container": "#342800",
+          "secondary-container": "#af8d11",
+          "surface-container-lowest": "#0e0e0e",
+          "secondary-fixed-dim": "#e9c349",
+          "on-primary-container": "#5e2400",
+          "surface-container-high": "#2a2a2a",
+          "on-tertiary-container": "#373632",
+          "on-primary-fixed": "#341100",
+          "inverse-surface": "#e5e2e1",
+          "surface-container-highest": "#353535",
+          "secondary": "#e9c349",
+          "on-tertiary": "#31312c",
+          "on-surface": "#e5e2e1",
+          "primary-fixed-dim": "#ffb692",
+          "background": "#131313",
+          "on-tertiary-fixed-variant": "#474742"
+        },
+        fontFamily: {
+          "headline": ["Noto Serif"],
+          "body": ["Manrope"],
+          "label": ["Manrope"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: 'Manrope', sans-serif; background-color: #131313; color: #E5E2E1; }
+  .font-serif { font-family: 'Noto Serif', serif; }
+  @keyframes pulse-live {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .live-dot { animation: pulse-live 1.4s ease-in-out infinite; }
+  @keyframes live-ring {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+  }
+  .live-ring { animation: live-ring 2s ease-out infinite; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+
+<!-- Nav -->
+<header class="sticky top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-lg shadow-[0_4px_30px_rgba(255,119,34,0.05)]">
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 md:py-6 max-w-screen-2xl mx-auto">
+  <a href="index.html" class="text-lg md:text-2xl font-serif font-bold text-[#E9C349] tracking-widest hover:opacity-80 transition-opacity">Athirathram 2026</a>
+  <div class="hidden md:flex gap-8 items-center font-serif text-lg tracking-tight">
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html">The Yajna</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="index.html#ritual-explorer">Schedule</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="master.html">The Master</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="learn-veda.html">Vedasree Patham</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="history.html">History</a>
+    <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="support.html">Support</a>
+  </div>
+  <div class="hidden md:flex items-center gap-3">
+    <a href="live.html" class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded font-bold text-xs tracking-widest uppercase border-2 border-red-600 live-ring">
+      <span class="w-2 h-2 rounded-full bg-white live-dot"></span>Live
+    </a>
+    <a href="support.html" class="inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-5 py-2 rounded font-semibold hover:scale-105 transition-transform text-sm">Donate</a>
+  </div>
+  <button id="menu-toggle" onclick="var m=document.getElementById('mobile-menu');m.classList.toggle('hidden');this.querySelector('.bar1').classList.toggle('rotate-45');this.querySelector('.bar1').classList.toggle('translate-y-2');this.querySelector('.bar2').classList.toggle('opacity-0');this.querySelector('.bar3').classList.toggle('-rotate-45');this.querySelector('.bar3').classList.toggle('-translate-y-2');" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+    <span class="bar1 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar2 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+    <span class="bar3 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
+  </button>
+</nav>
+<div id="mobile-menu" class="hidden md:hidden bg-[#1C1B1B] border-t border-[#E9C349]/10 px-6 py-6 flex flex-col gap-5 font-serif text-lg">
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html">The Yajna</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="index.html#ritual-explorer">Schedule</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="master.html">The Master</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="learn-veda.html">Vedasree Patham</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="history.html">History</a>
+  <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="support.html">Support</a>
+  <a href="live.html" class="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center mt-1">
+    <span class="w-2 h-2 rounded-full bg-white live-dot"></span>Watch Live
+  </a>
+  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center">Donate</a>
+</div>
+</header>
+
+<main>
+<!-- Live header strip -->
+<div class="bg-red-900/30 border-b border-red-700/30 px-6 py-2.5 flex items-center justify-center gap-3">
+  <span class="w-2.5 h-2.5 rounded-full bg-red-500 live-dot flex-shrink-0"></span>
+  <p class="text-sm text-red-300 font-semibold tracking-wide">Streaming now — Athirathram 2026, Calicut</p>
+</div>
+
+<!-- Video Section -->
+<section class="max-w-6xl mx-auto px-4 md:px-8 pt-8 pb-4">
+  <div class="mb-6">
+    <div class="flex items-center gap-3 mb-1">
+      <span class="inline-flex items-center gap-1.5 bg-red-600 text-white text-xs font-bold tracking-widest uppercase px-2.5 py-1 rounded">
+        <span class="w-1.5 h-1.5 rounded-full bg-white live-dot"></span>Live
+      </span>
+      <span class="text-on-surface-variant text-sm">Athirathram 2026</span>
+    </div>
+    <h1 class="font-serif text-2xl md:text-4xl text-on-background leading-snug">
+      Athirathram Mahayagam — <span class="text-primary italic">Calicut</span>
+    </h1>
+    <p class="text-on-surface-variant text-sm mt-1.5">April 17–26, 2026 · The first-ever Athirathra Mahayagam in Calicut</p>
+  </div>
+
+  <!-- 16:9 video embed -->
+  <div class="relative w-full rounded-xl overflow-hidden shadow-[0_0_60px_rgba(255,119,34,0.15)] border border-outline-variant/20" style="padding-bottom: 56.25%;">
+    <iframe
+      class="absolute inset-0 w-full h-full"
+      src="https://www.youtube.com/embed/OJyq_OtfeOw?rel=0&modestbranding=1"
+      title="Athirathram 2026 Live Stream"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<!-- Info strip below video -->
+<section class="max-w-6xl mx-auto px-4 md:px-8 py-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="flex items-start gap-3 bg-surface-container rounded-xl p-4 border border-outline-variant/10">
+      <span class="material-symbols-outlined text-primary text-xl mt-0.5">local_fire_department</span>
+      <div>
+        <p class="font-semibold text-sm text-on-background">Sacred Fire</p>
+        <p class="text-xs text-on-surface-variant mt-0.5">The Agni burns continuously through 10 days and nights</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 bg-surface-container rounded-xl p-4 border border-outline-variant/10">
+      <span class="material-symbols-outlined text-secondary text-xl mt-0.5">groups</span>
+      <div>
+        <p class="font-semibold text-sm text-on-background">Open for All</p>
+        <p class="text-xs text-on-surface-variant mt-0.5">No registration needed — all are welcome to witness</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 bg-surface-container rounded-xl p-4 border border-outline-variant/10">
+      <span class="material-symbols-outlined text-primary text-xl mt-0.5">location_on</span>
+      <div>
+        <p class="font-semibold text-sm text-on-background">Calicut, Kerala</p>
+        <p class="text-xs text-on-surface-variant mt-0.5">The first Athirathra Mahayagam ever conducted in Calicut</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 py-5 border-t border-outline-variant/10">
+    <p class="text-on-surface-variant text-sm text-center sm:text-left">Envisioned by <span class="text-on-background font-semibold">Acharyasri Rajesh</span> · Organised by Vedasree Foundation</p>
+    <a href="support.html" class="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2.5 rounded font-bold text-sm tracking-widest uppercase hover:scale-105 transition-transform flex-shrink-0">
+      <span class="material-symbols-outlined text-base">favorite</span>Support the Yajna
+    </a>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-outline-variant/10 py-8 text-center text-on-surface-variant text-sm px-4">
+  <p class="font-serif text-[#E9C349] text-base mb-2">Athirathram 2026</p>
+  <p>© 2026 Vedasree Foundation · All rights reserved</p>
+</footer>
+</body>
+</html>

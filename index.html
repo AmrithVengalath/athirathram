@@ -232,7 +232,10 @@
     <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="history.html">History</a>
     <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all" href="support.html">Support</a>
   </div>
-  <a href="support.html" class="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-8 py-3 rounded-DEFAULT font-bold text-sm tracking-widest uppercase hover:scale-105 transition-transform">Donate</a>
+  <div class="hidden md:flex items-center gap-3">
+    <a href="live.html" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded font-bold text-xs tracking-widest uppercase transition-all"><span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>Live</a>
+    <a href="support.html" class="inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-2.5 rounded-DEFAULT font-bold text-sm tracking-widest uppercase hover:scale-105 transition-transform">Donate</a>
+  </div>
   <button id="menu-toggle" onclick="var m=document.getElementById('mobile-menu');m.classList.toggle('hidden');this.querySelector('.bar1').classList.toggle('rotate-45');this.querySelector('.bar1').classList.toggle('translate-y-2');this.querySelector('.bar2').classList.toggle('opacity-0');this.querySelector('.bar3').classList.toggle('-rotate-45');this.querySelector('.bar3').classList.toggle('-translate-y-2');" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
     <span class="bar1 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
     <span class="bar2 block w-6 h-0.5 bg-[#E9C349] transition-all duration-300"></span>
@@ -246,7 +249,8 @@
   <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="learn-veda.html">Vedasree Patham</a>
   <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="history.html">History</a>
   <a class="text-[#E5E2E1]/80 hover:text-[#FFB692] transition-all border-b border-outline-variant/10 pb-3" href="support.html">Support</a>
-  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded-DEFAULT font-bold text-sm tracking-widest uppercase text-center mt-2">Donate</a>
+  <a href="live.html" class="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded font-bold text-sm tracking-widest uppercase text-center"><span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>Watch Live</a>
+  <a href="support.html" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-6 py-3 rounded-DEFAULT font-bold text-sm tracking-widest uppercase text-center mt-1">Donate</a>
 </div>
 </header>
 <main>
@@ -272,8 +276,12 @@
                 Witness the cosmic ritual of crossing the night. Envisioned by Acharyasri Rajesh.
                 <span class="block mt-4 font-bold text-secondary">April 17 - 26, 2026</span>
 </p>
-<div class="flex items-center justify-center">
-  <div class="inline-flex items-center gap-4 px-7 py-4 bg-surface-container/70 backdrop-blur-sm border border-primary/30 rounded-2xl shadow-lg [text-shadow:none]">
+<div class="flex flex-col items-center gap-4 [text-shadow:none]">
+  <a href="live.html" class="inline-flex items-center gap-2.5 bg-red-600 hover:bg-red-500 text-white pl-3 pr-5 py-2.5 rounded-full font-bold text-sm tracking-widest uppercase transition-all shadow-[0_0_24px_rgba(220,38,38,0.4)] hover:shadow-[0_0_32px_rgba(220,38,38,0.6)]">
+    <span class="w-2.5 h-2.5 rounded-full bg-white animate-pulse flex-shrink-0"></span>
+    Watch Live
+  </a>
+  <div class="inline-flex items-center gap-4 px-7 py-4 bg-surface-container/70 backdrop-blur-sm border border-primary/30 rounded-2xl shadow-lg">
     <span class="material-symbols-outlined text-primary text-3xl">groups</span>
     <div class="text-left">
       <p class="text-xs font-label tracking-[0.3em] uppercase text-secondary mb-0.5">Participation</p>
